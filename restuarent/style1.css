@@ -72,20 +72,23 @@ body {
 
 .navbar-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
   /* height: 64px; */
   align-items: center;
+  text-align: center;
 }
 
 .menu-items {
   order: 2;
   display: flex;
+  margin-right: 2rem;
 }
 
 .menu-items li {
   list-style: none;
   margin-left: 1.2rem;
-  margin-bottom: 0.5rem;
+  margin-top: 1.9rem;
+  /* margin-bottom: 0.5rem; */
   font-size: 1.2rem;
 }
 
@@ -106,6 +109,7 @@ body {
   order: 1;
   font-size: 2.3rem;
   margin-bottom: 0.5rem;
+  margin-right: 40.5rem;
 }
 
 /* ............//// Showcase styling ////......... */
@@ -362,6 +366,46 @@ body {
   color: #117964;
   font-weight: 700;
 }
+
+.show-cart li {
+  display: flex;
+}
+.card {
+  margin-bottom: 20px;
+}
+.card-img-top {
+  width: 200px;
+  height: 200px;
+  align-self: center;
+}
+
+.input-group{
+  /* border-radius: 10px; */
+  /* background-color: #5459fa; */
+  border: 1px solid #e7d912;
+}
+
+.choicebtn{
+  width: 30px;
+  height: 30px;
+  font-size: large;
+  border: none;
+  background-color: #faef54;
+  color: black;
+  /* border-radius: 10px; */
+  transition: 0.3s;
+}
+
+.choicebtn:hover{
+  background-color: #e7d912;
+  color: aliceblue;
+}
+
+.table tr{
+  margin-bottom: 10px;
+  height: 50px;
+}
+
 
 /* ........./ Testimonial /.......... */
 
@@ -686,169 +730,8 @@ body {
   }
 }
 
+/*=============================================== footer ====================================================*/
 
-/*============================================== cart ===========================================*/
-
-.list{
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  column-gap: 20px;
-  row-gap: 20px;
-  margin-top: 50px;
-}
-.list .item{
-  text-align: center;
-    background-color: #DCE0E1;
-    padding: 20px;
-    background-color: white;
-    box-shadow: 5px 5px 10px lightgray;
-    letter-spacing: 9px;
-    margin-bottom: 22px;
-    border-radius: 20px;
-    margin-left: 21px;
-    margin-right: 19px;
-}
-.list .item:hover{
-  transform: translate3D(0,-1px,0) scale(1.03);
-  box-shadow: 5px 5px 10px lightgray;
-  transition: all 0.4s ease-in-out;
-  
-}
-.list .item img{
-  width: 90%;
-}
-.list .item .title{
-  font-weight: 600;
-}
-.list .item .price{
-  margin: 10px;
-}
-.list .item button{
-  background-color: #1C1F25;
-  color: #fff;
-  width: 100%;
-  padding: 10px;
-  height:50px;
-  background: -webkit-linear-gradient(left, #7579ff, #b224ef);
-  border-radius:15px;
-  border:none;
-}
-.list .item button:hover {
-  /* transition: scale(1.1); */
-  background:black ;
-  /* transition: background 0.3s ease-in-out; */
-}
-.card{
-  position:fixed;
-  top:0;
-  left: 100%;
-  width: 500px;
-  background-color: #050505;
-  box-shadow: 5px 5px 10px lightgray;
-  height: 100vh;
-  transition: 0.5s;
-  z-index: 1000; 
-}
-.active .card{
-  left: calc(100% - 500px);
-}
-/* .active .container{
- /* transform: translateX(-00px); */
-/* }  
--webkit-linear-gradient(left, #7579ff, #b224ef) */
-.card h1{
-  color: #b224ef;
-  font-weight: 400;
-  margin: 0;
-  padding: 0 20px;
-  height: 80px;
-  display: flex;
-  align-items: center;
-  margin-left:10px;
-  
-}
-.card .checkOut{
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-
-}
-.card .checkOut div{
-  background-color: #b224ef;
-  width: 75%;
-  border-radius: 30px;
-  margin: 5px 40px;
-  height: 50px;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  font-weight: bold;
-  cursor: pointer;
-}
-.card .checkOut div:nth-child(2){
-  background-color: #b224ef;
-  color: #fff;
-}
-
-.card .checkOut div:hover{
-  background-color: #ebe7e7;
-  color: #000000;
-}
-
-.listCard{
-  overflow-y: scroll;
-}
-.listCard li{
-  display: grid;
-  grid-template-columns: 100px repeat(3, 1fr);
-  color: #fff;
-  row-gap: 10px;
-}
-.listCard li div{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.listCard li img{
-  width: 90%;
-}
-.listCard li button{
-  background-color: #fff5;
-  border: none;
-}
-.listCard .count{
-  margin: 0 10px;
-}
-nav .shopping{
-  position: relative;
-  text-align: right;
-}
-nav .shopping img{
-  width: 30px;
-}
-nav .shopping span{
-  height: 20px;
-  width: 20px;
-  background: red;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  position: absolute;
-  top: -5px;
-  left: 80%;
-  padding: 3px 10px;
-}
-.card h1{
-  margin-left:10px;
-}
-.btn1{
-  width:20px;
-}
-/* footer */
 .foot_sec {
   width: 100%;
   
@@ -893,15 +776,7 @@ nav .shopping span{
   background:black;
   padding: 40px 30px;
 }
-/* .foot_btm {
-  width: 100%;
-  background: #000;
-  padding: 30px 0;
-}
-.foot_btm p {
-  font: 500 15.52px/28px "Poppins", sans-serif;
-  color: #fff;
-} */
+
 .foot_btm {
   width: 100%;
   background: #000;
