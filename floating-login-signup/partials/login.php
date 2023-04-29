@@ -1,5 +1,5 @@
 <?php
-    include "C:/xampp/htdocs/dbms/mini_project/floating-login-signup/partials/_dbconnect.php";
+    include "C:/xampp/htdocs/dbms/Food-delivery-software/floating-login-signup/partials/_dbconnect.php";
     $login = false;
     $showError = "";
     if($_SERVER["REQUEST_METHOD"] == "POST"){

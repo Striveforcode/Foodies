@@ -1,5 +1,5 @@
 <?php
-include "C:/xampp/htdocs/dbms/mini_project/floating-login-signup/partials/_dbconnect.php";
+include "C:/xampp/htdocs/dbms/Food-delivery-software/floating-login-signup/partials/_dbconnect.php";
 session_start();
 
 if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){

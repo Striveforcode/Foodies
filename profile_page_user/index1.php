@@ -1,7 +1,14 @@
 <?php
-    include "C:/xampp/htdocs/dbms/mini_project/floating-login-signup/partials/_dbconnect.php";
+    // include "C:/xampp/htdocs/dbms//floating-login-signup/partials/_dbconnect.php";
+    include "C:/xampp/htdocs/dbms/Food-delivery-software/floating-login-signup/partials/_dbconnect.php";
     session_start();
     $email=$_SESSION['email'];
+
+    if(!empty($_GET)){
+        $upd = $_GET['upd'];
+    }else{
+        $upd = 0;
+    }
 
     $sql = "SELECT * FROM `login-signup` where email='$email'";
     $result = mysqli_query($conn, $sql);
@@ -14,6 +21,16 @@
         header("Location: ../floating-login-signup/index.php");
         exit;
     }
+    
+    if(mysqli_num_rows($result) > 0){
+        $row = mysqli_fetch_assoc($result);
+        
+        $profile_pic = $result_fetch['profile_pic'];
+     }else{
+        $profile_pic = "default_profile_pic.jpg";
+    }
+    
+    // mysqli_close($conn);
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,12 +53,21 @@
 </head>
 
 <body>
+<script type="text/javascript">
+    $(document).ready(function(){
 
+        var upd = '<?php echo $upd; ?>';
+        if(upd === '1'){
+            alert("Profile Updated Successfully");
+
+        }
+    })
+</script>
     <div class="container emp-profile">
         <form method="post" action="profile_pic.php" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-4 d-flex">
-                    <div class="profile-img">
+                    <!-- <div class="profile-img">
                         <img src="https://i.pinimg.com/564x/34/23/27/342327463d2c4d4de8381115a9672f0f.jpg" alt="/"
                             style="width: 250px; height: 250px;" id="output">
 
@@ -52,6 +78,15 @@
                         <div>
 
                         </div>
+                    </div> -->
+
+                    <div class="profile-img">
+                            <img src="<?php echo 'images/'.$profile_pic; ?>" alt="" style="width: 250px; height: 250px;" id="output">
+
+                            <div class="file btn btn-sm btn-primary mt-3">
+                                <input type="file" accept="image/*" name="image" id="file"  onchange="loadFile(event)"  >
+                                <label for="file" style="cursor: pointer;" >Upload Image</label>
+                            </div>
                     </div>
                 </div>
 

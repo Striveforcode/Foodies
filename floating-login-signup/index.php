@@ -19,7 +19,7 @@
     </div>
     
     <div class="cont">
-      <form action="/dbms/mini_project/floating-login-signup/partials/login.php" method = "post">
+      <form action="/dbms/Food-delivery-software/floating-login-signup/partials/login.php" method = "post">
         <div class="form sign-in">
           <h2>Sign In</h2>
           <label>
@@ -46,7 +46,7 @@
           </div>
         </div>
       </form>
-      <form action="/dbms/mini_project/floating-login-signup/partials/signUp.php" method = "post">
+      <form action="/dbms/Food-delivery-software/floating-login-signup/partials/signUp.php" method = "post">
         <div class="sub-cont">
           <div class="img">
             <div class="img-text m-up">
