@@ -20,11 +20,8 @@
             <div class="swiper-wrapper">
             <?php 
                     include'../floating-login-signup/partials/_dbconnect.php';
-                    // $sql = "SELECT * FROM `shop-list`";
-                    // $result = mysqli_query($conn, $sql);
-                    // $num = mysqli_num_rows($result);
-                    // $result_fetch = mysqli_fetch_assoc($result);
                     $qry = $conn->query("SELECT * FROM `shop-list`");
+                    session_start();
                     while($row = $qry->fetch_assoc()):
             ?>
                 <div class="swiper-slide">
@@ -35,7 +32,10 @@
                         <!-- <i class="fa-solid fa-shop-lock fa-beat"></i> -->
                         <!-- <a><i class="fa-thin fa-shop-lock style='font-size:48px;color:red'"></i></a> -->
                         <?php if($row['open_close']==1) : ?>
-                            <a class="btn" href = "../restuarent/index1.php">Order</a>
+                            <form method="post" action = "../restuarent/index1.php">
+                                <input type="hidden" name="shop_number" value="<?php echo $row['shop_number'] ?>" >
+                                <button type = "submit" name = "order" class="btn">Order</button>
+                            </form>
                         <?php else : ?>
                             <p>Shop Close</p>
                         <?php endif; ?>

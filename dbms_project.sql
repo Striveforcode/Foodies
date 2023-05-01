@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2023 at 11:58 AM
+-- Generation Time: May 01, 2023 at 07:23 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -78,7 +78,36 @@ CREATE TABLE `login-signup` (
 --
 
 INSERT INTO `login-signup` (`name`, `email`, `password`, `date`, `verification_code`, `is_verified`, `phone_number`, `profile_pic`) VALUES
-('root', 'jindalyuvraj2@gmail.com', '1234', '2023-04-30 01:02:57', '81ecf67f3ea0d214670b5e7a94baeb00', 1, '6280147330', 'IIT2021161_networkFlow.png');
+('root', 'jindalyuvraj2@gmail.com', '1234', '2023-04-30 01:02:57', '81ecf67f3ea0d214670b5e7a94baeb00', 1, '6280147330', '38000.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `menu`
+--
+
+CREATE TABLE `menu` (
+  `shop_number` int(10) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `description` text NOT NULL,
+  `price` int(10) NOT NULL DEFAULT 0,
+  `img` varchar(255) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'unavailable = 0,availible = 1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `menu`
+--
+
+INSERT INTO `menu` (`shop_number`, `name`, `description`, `price`, `img`, `status`) VALUES
+(1, 'Food Menu Item 1', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Non,quae.', 250, 'fatima-akram-uU0Anw-8Vsg-unsplash.jpg', 1),
+(1, 'Pizza', 'loemr ksdivc msdvi jskdhvi dcvhsvdics dh sjydhv cskdv cksdhvisk dkvcsi d', 100, 'fatima-akram-uU0Anw-8Vsg-unsplash.jpg', 1),
+(1, 'Burger', 'burger, is a sandwich consisting of fillings—usually a patty of ground meat, typically beef —placed inside a sliced bun or bread roll.', 70, 'burger.jpg', 1),
+(1, 'Cold Coffee', 'Frosty and satisfying Cold Coffee is a fantastic treat to enjoy on a warm day.', 120, 'cold-coffee.jpg', 1),
+(1, 'Fries', ' frites, side dish or snack typically made from deep-fried potatoes that have been cut into various shapes', 50, 'fries.jpg', 1),
+(2, 'Fries', '', 30, 'fries2.jpg', 1),
+(2, 'Chocalate Shake', '', 150, 'chocalate-shake.jpg', 1),
+(2, 'Paneer Tikka', '', 170, 'paneer-tikka.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -173,7 +202,7 @@ CREATE TABLE `shop-list` (
 --
 
 INSERT INTO `shop-list` (`shop_number`, `shop_name`, `shop_description`, `shop_img`, `open_close`) VALUES
-(1, 'CHILL OUT', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit sed hic voluptatum! Cumque magni dicta nobis est recusandae quam quia? Quae quidem laborum molestiae distinctio quisquam magnam sint sapiente sequi!', 'shop2.png', '0'),
+(1, 'CHILL OUT', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit sed hic voluptatum! Cumque magni dicta nobis est recusandae quam quia? Quae quidem laborum molestiae distinctio quisquam magnam sint sapiente sequi!', 'shop2.png', '1'),
 (2, 'Shop Name', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit sed hic voluptatum! Cumque magni dicta nobis est recusandae quam quia? Quae quidem laborum molestiae distinctio quisquam magnam sint sapiente sequi!', '123771-OQ7GEF-118-removebg-preview.png', '1'),
 (3, 'Shop Name', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit sed hic voluptatum! Cumque magni dicta nobis est recusandae quam quia? Quae quidem laborum molestiae distinctio quisquam magnam sint sapiente sequi!', '3979438-removebg-preview.png', '1'),
 (4, 'Shop Name', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit sed hic voluptatum! Cumque magni dicta nobis est recusandae quam quia? Quae quidem laborum molestiae distinctio quisquam magnam sint sapiente sequi!', '8274985_3873446-removebg-preview.png', '1'),

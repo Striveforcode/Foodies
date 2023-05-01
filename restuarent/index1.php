@@ -1,5 +1,7 @@
 <?php
-include "C:/xampp/htdocs/dbms/Food-delivery-software/floating-login-signup/partials/_dbconnect.php";
+include '../floating-login-signup/partials/_dbconnect.php';
+header('Cache-Control: no cache'); //no cache
+session_cache_limiter('private_no_expire');
 session_start();
 
 if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
@@ -136,53 +138,28 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
     <section id="food-menu">
         <h2 class="food-menu-heading">Food Menu</h2>
         <div class="food-menu-container container">
+            <?php 
+                    $shop_number = $_POST['shop_number'];
+                    $qry = $conn->query("SELECT * FROM `menu` where shop_number='$shop_number'");
+                    while($row = $qry->fetch_assoc()):
+            ?>
             <div class="food-menu-item">
                 <div class="food-img">
-                    <img src="https://i.postimg.cc/wTLMsvSQ/food-menu1.jpg" alt="" />
+                    <img src="../photos/<?php echo $row['img'] ?>" alt="" />
                 </div>
                 <div class="food-description">
-                    <h2 class="food-titile">Food Menu Item 1</h2>
+                    <h2 class="food-titile"><?php echo $row['name'] ?></h2>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Non,
-                        quae.
+                    <?php echo $row['description'] ?>
                     </p>
-                    <p class="food-price">Price: &#8377; 250</p>
+                    <p class="food-price">Price: &#8377; <?php echo $row['price'] ?></p>
                     <!-- <button class="btn btn-primary">Add</button> -->
-                    <a href="#" data-name="Food_Menu_Item_1" data-price="250" class="add-to-cart btn btn-primary">Add to cart</a>
+                    <a href="#" data-name="<?php echo $row['name'] ?>" data-price="<?php echo $row['price'] ?>" class="add-to-cart btn btn-primary">Add to cart</a>
                 </div>
             </div>
-
-            <div class="food-menu-item">
-                <div class="food-img">
-                    <img src="https://i.postimg.cc/sgzXPzzd/food-menu2.jpg" alt="error" />
-                </div>
-                <div class="food-description">
-                    <h2 class="food-titile">Food Menu Item 2</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Non,
-                        quae.
-                    </p>
-                    <p class="food-price">Price: &#8377; 250</p>
-                    <!-- <button class="btn btn-primary">Add</button> -->
-                    <a href="#" data-name="Food_Menu_Item_2" data-price="250" class="add-to-cart btn btn-primary">Add to cart</a>
-                </div>
-            </div>
-            <div class="food-menu-item">
-                <div class="food-img">
-                    <img src="https://i.postimg.cc/8zbCtYkF/food-menu3.jpg" alt="" />
-                </div>
-                <div class="food-description">
-                    <h2 class="food-titile">Food Menu Item 3</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Non,
-                        quae.
-                    </p>
-                    <p class="food-price">Price: &#8377; 250</p>
-                    <!-- <button class="btn btn-primary">Add</button> -->
-                    <a href="#" data-name="Food Menu Item 3" data-price="250" class="add-to-cart btn btn-primary">Add to cart</a>
-                </div>
-            </div>
-            <div class="food-menu-item">
+            <?php endwhile; ?>
+            
+            <!-- <div class="food-menu-item">
                 <div class="food-img">
                     <img src="https://i.postimg.cc/Yq98p5Z7/food-menu4.jpg" alt="" />
                 </div>
@@ -193,7 +170,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
                         quae.
                     </p>
                     <p class="food-price">Price: &#8377; 250</p>
-                    <!-- <button class="btn btn-primary">Add</button> -->
+                    
                     <a href="#" data-name="Food_Menu_Item_4" data-price="250" class="add-to-cart btn btn-primary">Add to cart</a>
                 </div>
             </div>
@@ -208,7 +185,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
                         quae.
                     </p>
                     <p class="food-price">Price: &#8377; 250</p>
-                    <!-- <button class="btn btn-primary">Add</button> -->
+                    
                     <a href="#" data-name="Food_Menu_Item_5" data-price="250" class="add-to-cart btn btn-primary">Add to cart</a>
                 </div>
             </div>
@@ -223,7 +200,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
                         quae.
                     </p>
                     <p class="food-price">Price: &#8377; 250</p>
-                    <!-- <button class="btn btn-primary">Add</button> -->
+                    
                     <a href="#" data-name="Food_Menu_Item_6" data-price="250" class="add-to-cart btn btn-primary">Add to cart</a>
                 </div>
             </div>
@@ -238,10 +215,10 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
                         quae.
                     </p>
                     <p class="food-price">Price: &#8377; 250</p>
-                    <!-- <button class="btn btn-primary">Add</button> -->
+                    
                     <a href="#" data-name="Food_Menu_Item_7" data-price="250" class="add-to-cart btn btn-primary">Add to cart</a>
-                </div>
-            </div>
+                </div> 
+            </div> -->
         </div>
     </section>
 
@@ -259,7 +236,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
             <table class="show-cart table">
 
             </table>
-            <div>Total price: $<span class="total-cart"></span></div>
+            <div>Total price: &#8377;<span class="total-cart"></span></div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -314,8 +291,6 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="app.js"></script>
-
-</html>
 
 </body>
 
