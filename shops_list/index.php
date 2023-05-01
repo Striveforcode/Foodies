@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="style.css">
-
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 </head>
 
 <body>
@@ -18,67 +18,31 @@
     <section>
         <div class="swiper swiper1">
             <div class="swiper-wrapper">
+            <?php 
+                    include'../floating-login-signup/partials/_dbconnect.php';
+                    // $sql = "SELECT * FROM `shop-list`";
+                    // $result = mysqli_query($conn, $sql);
+                    // $num = mysqli_num_rows($result);
+                    // $result_fetch = mysqli_fetch_assoc($result);
+                    $qry = $conn->query("SELECT * FROM `shop-list`");
+                    while($row = $qry->fetch_assoc()):
+            ?>
                 <div class="swiper-slide">
-                    <img src="../photos/shop2.png" alt="">
+                    <img src="../photos/<?php echo $row['shop_img'] ?>" alt="">
                     <div class="shop-content">
-                        <h2>Shop name</h2>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit sed hic voluptatum! Cumque
-                            magni
-                            dicta nobis est recusandae quam quia? Quae quidem laborum molestiae distinctio quisquam
-                            magnam
-                            sint sapiente sequi!</p>
-                        <a class="btn" href = "../restuarent/index1.php">Order</a>
+                        <h2><?php echo $row['shop_name'] ?></h2>
+                        <p><?php echo $row['shop_description'] ?></p>
+                        <!-- <i class="fa-solid fa-shop-lock fa-beat"></i> -->
+                        <!-- <a><i class="fa-thin fa-shop-lock style='font-size:48px;color:red'"></i></a> -->
+                        <?php if($row['open_close']==1) : ?>
+                            <a class="btn" href = "../restuarent/index1.php">Order</a>
+                        <?php else : ?>
+                            <p>Shop Close</p>
+                        <?php endif; ?>
                     </div>
 
                 </div>
-                <div class="swiper-slide">
-                    <img src="../photos/123771-OQ7GEF-118-removebg-preview.png" alt="">
-                    <div class="shop-content">
-                        <h2>Shop name</h2>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit sed hic voluptatum! Cumque
-                            magni
-                            dicta nobis est recusandae quam quia? Quae quidem laborum molestiae distinctio quisquam
-                            magnam
-                            sint sapiente sequi!</p>
-                            <a class="btn" href = "../restuarent/index1.php">Order</a>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <img src="../photos/3979438-removebg-preview.png" alt="" href="../restuarent/index1.php">
-                    <div class="shop-content">
-                        <h2>Shop name</h2>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit sed hic voluptatum! Cumque
-                            magni
-                            dicta nobis est recusandae quam quia? Quae quidem laborum molestiae distinctio quisquam
-                            magnam
-                            sint sapiente sequi!</p>
-                            <a class="btn" href = "../restuarent/index1.php">Order</a>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <img src="../photos/8274985_3873446-removebg-preview.png" alt="">
-                    <div class="shop-content">
-                        <h2>Shop name</h2>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit sed hic voluptatum! Cumque
-                            magni
-                            dicta nobis est recusandae quam quia? Quae quidem laborum molestiae distinctio quisquam
-                            magnam
-                            sint sapiente sequi!</p>
-                            <a class="btn" href = "../restuarent/index1.php">Order</a>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <img src="../photos/3901287-removebg-preview.png" alt="">
-                    <div class="shop-content">
-                        <h2>Shop name</h2>
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit sed hic voluptatum! Cumque
-                            magni
-                            dicta nobis est recusandae quam quia? Quae quidem laborum molestiae distinctio quisquam
-                            magnam
-                            sint sapiente sequi!</p>
-                            <a class="btn" href = "../restuarent/index1.php">Order</a>
-                    </div>
-                </div>
+            <?php endwhile; ?>
 
             </div>
             <!-- Add Pagination -->
@@ -88,7 +52,6 @@
         </div>
 
         <script type="module" src="script.js"></script>
-
         <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
 </body>
