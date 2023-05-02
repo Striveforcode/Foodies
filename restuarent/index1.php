@@ -33,7 +33,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
                 <!-- <li><a href="#food">Category</a></li> -->
                 <li><a href="#food-menu">Menu</a></li>
                 <li><a href="#testimonials">Testimonial</a></li>
-                <li><a href="../profile_page_user/index1.php">Profile</a></li>
+                <li><a href="../profile_page_user/index.php">Profile</a></li>
                 <li><a href="../floating-login-signup/partials/logout.php">Logout</a></li>
                 <!-- <li><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cart"><i class="fa fa-shopping-basket" aria-hidden="true"></i> (<span
               class="total-count"></span>)</button>

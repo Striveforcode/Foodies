@@ -1,5 +1,4 @@
 <?php
-    // include "C:/xampp/htdocs/dbms//floating-login-signup/partials/_dbconnect.php";
     include "C:/xampp/htdocs/dbms/Food-delivery-software/floating-login-signup/partials/_dbconnect.php";
     session_start();
     $email=$_SESSION['email'];
@@ -16,7 +15,8 @@
     $result_fetch = mysqli_fetch_assoc($result);
 
     $name = $result_fetch['name'];
-    $phone = $result_fetch['phone_number'];
+    $phone_number = $result_fetch['phone_number'];
+    $address = $result_fetch['address'];
     if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
         header("Location: ../floating-login-signup/index.php");
         exit;
@@ -29,8 +29,6 @@
      }else{
         $profile_pic = "default_profile_pic.jpg";
     }
-    
-    // mysqli_close($conn);
 ?>
 <!DOCTYPE html>
 <html>
@@ -54,14 +52,14 @@
 
 <body>
 <script type="text/javascript">
-    $(document).ready(function(){
+    // $(document).ready(function(){
 
-        var upd = '<?php echo $upd; ?>';
-        if(upd === '1'){
-            alert("Profile Updated Successfully");
+    //     var upd = '<?php echo $upd; ?>';
+    //     if(upd === '1'){
+    //         alert("Profile Updated Successfully");
 
-        }
-    })
+    //     }
+    // })
 </script>
     <div class="container emp-profile">
         <form method="post" action="profile_pic.php" enctype="multipart/form-data">
@@ -86,6 +84,7 @@
                             <div class="file btn btn-sm btn-primary mt-3">
                                 <input type="file" accept="image/*" name="image" id="file"  onchange="loadFile(event)"  >
                                 <label for="file" style="cursor: pointer;" >Upload Image</label>
+                                <!-- <button type="submit" for="file" name="upload" class="pic btn" style="cursor: pointer;" ><b>Upload Image</b></button> -->
                             </div>
                     </div>
                 </div>
@@ -136,15 +135,17 @@
                                             <label>Name</label>
                                         </div>
                                         <div class="col-md-8">
-                                            <p><?php echo $name; ?></p>
+                                            <!-- <p><?php echo $name; ?></p> -->
+                                            <input type="text" class="form-control" name="name" style="width:20em;" value="<?php echo $name; ?>" required />
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-4" id="attr">
-                                            <label>Email</label>
+                                            <!-- <label>Email</label> -->
                                         </div>
                                         <div class="col-md-8">
-                                            <p><?php echo $email; ?></p>
+                                            <!-- <p><?php echo $email; ?></p> -->
+                                            <!-- <input type="text" class="form-control" name="email" style="width:20em;" value="<?php echo $email; ?>" required /> -->
                                         </div>
                                     </div>
                                     <div class="row">
@@ -152,19 +153,26 @@
                                             <label>Phone no .</label>
                                         </div>
                                         <div class="col-md-8">
-                                            <p><?php echo $phone; ?></p> 
+                                            <!-- <p><?php echo $phone_number; ?></p> -->
+                                            <input type="text" class="form-control" name="phone" style="width:20em;"  value="<?php echo $phone_number; ?>" required />
                                         </div>
                                     </div>
 
                                 </div>
                                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 
-                                    <div class="row">
+                                    <!-- <div class="row">
 
                                         <div class="col-md-4" id="attr">
                                             <label>Saved Adresses</label>
                                         </div>
-                                    </div>
+                                    </div> -->
+                                    <div class="col-md-4" id="attr">
+                                            <label>Address .</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" name="address" style="width:20em;"  value="<?php echo $address; ?>" required />
+                                        </div>
 
                                 </div>
 
@@ -207,55 +215,35 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-4" id="attr">
-                                            <label>Name</label>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <p>Milan parmar</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4" id="attr">
-                                            <label>Email</label>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <p>mp583939@gmail.com</p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4" id="attr">
-                                            <label>Phone no .</label>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <p>9327397406</p>
-                                        </div>
-                                    </div>
-
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row" style="justify-content: flex-end;margin-right: 50px;">
-                        <a href="#"><button type="submit" name="upload" class="pic mt-4 ml-5 btn btn-warning"><b>Update Profile</b></button></a>
+                        <a href="#"><button type="submit" name="save" class="pic mt-4 ml-5 btn btn-warning"><b>save</b></button></a>
                     </div>
                 </div>
             </div>
-
     </div>
     </form>
     </div>
 
+    <!-- <script>
+        $(document).ready(function(){
+	$('.pic').click(function(){
+	$.ajax({
+		url:"profile_pic1.php",
 
-
-
-
+	});
+	});
+});
+    </script> -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <!-- <script type="text/javascript" src="js/profile_pic.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
         crossorigin="anonymous"></script>
+    <!-- <script src="script.js"></script> -->
 </body>
-
 </html>
