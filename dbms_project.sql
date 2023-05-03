@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2023 at 07:23 PM
+-- Generation Time: May 03, 2023 at 01:16 PM
 -- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- PHP Version: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -70,15 +70,16 @@ CREATE TABLE `login-signup` (
   `verification_code` varchar(255) NOT NULL,
   `is_verified` int(10) NOT NULL DEFAULT 0,
   `phone_number` text NOT NULL,
-  `profile_pic` varchar(255) NOT NULL
+  `profile_pic` varchar(255) NOT NULL,
+  `address` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `login-signup`
 --
 
-INSERT INTO `login-signup` (`name`, `email`, `password`, `date`, `verification_code`, `is_verified`, `phone_number`, `profile_pic`) VALUES
-('root', 'jindalyuvraj2@gmail.com', '1234', '2023-04-30 01:02:57', '81ecf67f3ea0d214670b5e7a94baeb00', 1, '6280147330', '38000.jpg');
+INSERT INTO `login-signup` (`name`, `email`, `password`, `date`, `verification_code`, `is_verified`, `phone_number`, `profile_pic`, `address`) VALUES
+('MILAN', 'jindalyuvraj2@gmail.com', '1234', '2023-04-30 01:02:57', '81ecf67f3ea0d214670b5e7a94baeb00', 1, '00009990909', 'pexels-wolfgang-2747449.jpg', 'rajkot');
 
 -- --------------------------------------------------------
 
@@ -88,7 +89,7 @@ INSERT INTO `login-signup` (`name`, `email`, `password`, `date`, `verification_c
 
 CREATE TABLE `menu` (
   `shop_number` int(10) NOT NULL,
-  `name` varchar(100) NOT NULL,
+  `name` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `price` int(10) NOT NULL DEFAULT 0,
   `img` varchar(255) NOT NULL,
@@ -107,7 +108,7 @@ INSERT INTO `menu` (`shop_number`, `name`, `description`, `price`, `img`, `statu
 (1, 'Fries', ' frites, side dish or snack typically made from deep-fried potatoes that have been cut into various shapes', 50, 'fries.jpg', 1),
 (2, 'Fries', '', 30, 'fries2.jpg', 1),
 (2, 'Chocalate Shake', '', 150, 'chocalate-shake.jpg', 1),
-(2, 'Paneer Tikka', '', 170, 'paneer-tikka.jpg', 1);
+(2, 'Panner', '', 90, 'paneer-tikka.jpg', 1);
 
 -- --------------------------------------------------------
 
