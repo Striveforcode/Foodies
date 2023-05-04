@@ -1,70 +1,48 @@
 $(document).ready(function () {
-    // Add smooth scrolling to all links
     $("a").on("click", function (event) {
-        // Make sure this.hash has a value before overriding default behavior
         if (this.hash !== "") {
-            // Prevent default anchor click behavior
             event.preventDefault();
-
-            // Store hash
             var hash = this.hash;
-
-            // Using jQuery's animate() method to add smooth page scroll
-            // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
             $("html, body").animate(
                 {
                     scrollTop: $(hash).offset().top,
                 },
                 1000,
                 function () {
-                    // Add hash (#) to URL when done scrolling (default click behavior)
                     window.location.hash = hash;
                 }
             );
-        } // End if
+        } 
     });
 });
 
-// ************************************************
-// Shopping Cart API
-// ************************************************
-
 let shoppingCart = (function () {
 
-    // =============================
-    // Private methods and propeties
-    // =============================
     cart = [];
   
-    // Constructor
     function Item(name, price, count) {
       this.name = name;
       this.price = price;
       this.count = count;
     }
   
-    // Save cart
     function saveCart() {
       sessionStorage.setItem('shoppingCart', JSON.stringify(cart));
     }
-  
-    // Load cart
+
     function loadCart() {
       cart = JSON.parse(sessionStorage.getItem('shoppingCart'));
     }
     if (sessionStorage.getItem("shoppingCart") != null) {
       loadCart();
     }
-  
-    // =============================
-    // Public methods and propeties
-    // =============================
+
     var obj = {};
   
-    // Add to cart
     obj.addItemToCart = function (name, price, count) {
+      console.log("add");
       for (var item in cart) {
-        if (cart[item].name === name) {
+        if (cart[item].name.toLowerCase().indexOf(name.toLowerCase()) !== -1) {
           cart[item].count++;
           saveCart();
           return;
@@ -74,19 +52,17 @@ let shoppingCart = (function () {
       cart.push(item);
       saveCart();
     }
-    // Set count from item
     obj.setCountForItem = function (name, count) {
       for (var i in cart) {
-        if (cart[i].name === name) {
+        if (cart[item].name.toLowerCase().indexOf(name.toLowerCase()) !== -1) {
           cart[i].count = count;
           break;
         }
       }
     };
-    // Remove item from cart
     obj.removeItemFromCart = function (name) {
       for (var item in cart) {
-        if (cart[item].name === name) {
+        if (ccart[item].name.toLowerCase().indexOf(name.toLowerCase()) !== -1) {
           cart[item].count--;
           if (cart[item].count === 0) {
             cart.splice(item, 1);
@@ -96,25 +72,21 @@ let shoppingCart = (function () {
       }
       saveCart();
     }
-  
-    // Remove all items from cart
+
     obj.removeItemFromCartAll = function (name) {
       for (var item in cart) {
-        if (cart[item].name === name) {
+        if (cart[item].name.toLowerCase().indexOf(name.toLowerCase()) !== -1) {
           cart.splice(item, 1);
           break;
         }
       }
       saveCart();
     }
-  
-    // Clear cart
     obj.clearCart = function () {
       cart = [];
       saveCart();
     }
   
-    // Count cart 
     obj.totalCount = function () {
       var totalCount = 0;
       for (var item in cart) {
@@ -123,7 +95,6 @@ let shoppingCart = (function () {
       return totalCount;
     }
   
-    // Total cart
     obj.totalCart = function () {
       var totalCart = 0;
       for (var item in cart) {
@@ -131,8 +102,7 @@ let shoppingCart = (function () {
       }
       return Number(totalCart.toFixed(2));
     }
-  
-    // List cart
+
     obj.listCart = function () {
       var cartCopy = [];
       for (i in cart) {
@@ -147,26 +117,9 @@ let shoppingCart = (function () {
       }
       return cartCopy;
     }
-  
-    // cart : Array
-    // Item : Object/Class
-    // addItemToCart : Function
-    // removeItemFromCart : Function
-    // removeItemFromCartAll : Function
-    // clearCart : Function
-    // countCart : Function
-    // totalCart : Function
-    // listCart : Function
-    // saveCart : Function
-    // loadCart : Function
     return obj;
   })();
   
-  
-  // *****************************************
-  // Triggers / Events
-  // ***************************************** 
-  // Add item
   $('.add-to-cart').click(function (event) {
     event.preventDefault();
     var name = $(this).data('name');
@@ -175,15 +128,14 @@ let shoppingCart = (function () {
     displayCart();
   });
   
-  // Clear items
   $('.clear-cart').click(function () {
     shoppingCart.clearCart();
     displayCart();
   });
   
-  
+ 
   function displayCart() {
-    var cartArray = shoppingCart.listCart();
+    var cartArray = shoppingCart.listCart(); 
     var output = "";
     for (var i in cartArray) {
       output += "<tr>"
@@ -197,34 +149,38 @@ let shoppingCart = (function () {
         + "<td>" + cartArray[i].total + "</td>"
         + "</tr>";
     }
+    
     $('.show-cart').html(output);
     $('.total-cart').html(shoppingCart.totalCart());
     $('.total-count').html(shoppingCart.totalCount());
+    $.ajax({
+      url: "add_to_cart.php",
+      method: "POST",
+      data: { cart: cartArray },
+      success: function(response) {
+        console.log(response);
+      }
+    });
   }
-  
-  // Delete item button
-  
+
   $('.show-cart').on("click", ".delete-item", function (event) {
     var name = $(this).data('name')
     shoppingCart.removeItemFromCartAll(name);
     displayCart();
   })
   
-  
-  // -1
+
   $('.show-cart').on("click", ".minus-item", function (event) {
     var name = $(this).data('name')
     shoppingCart.removeItemFromCart(name);
     displayCart();
   })
-  // +1
   $('.show-cart').on("click", ".plus-item", function (event) {
     var name = $(this).data('name')
     shoppingCart.addItemToCart(name);
     displayCart();
   })
   
-  // Item count input
   $('.show-cart').on("change", ".item-count", function (event) {
     var name = $(this).data('name');
     var count = Number($(this).val());

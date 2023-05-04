@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2023 at 02:22 PM
+-- Generation Time: May 05, 2023 at 12:48 AM
 -- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- PHP Version: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -51,12 +51,22 @@ INSERT INTO `admin` (`name`, `email`, `password`, `phone_number`, `address`, `sh
 --
 
 CREATE TABLE `cart` (
-  `id` int(30) NOT NULL,
-  `client_ip` varchar(20) NOT NULL,
-  `user_id` int(30) NOT NULL,
-  `product_id` int(30) NOT NULL,
-  `qty` int(30) NOT NULL
+  `email` varchar(30) NOT NULL,
+  `shop_number` int(10) NOT NULL,
+  `name` varchar(77) NOT NULL,
+  `price` int(10) NOT NULL,
+  `count` varchar(77) NOT NULL,
+  `total` varchar(77) NOT NULL,
+  `pid` int(77) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`email`, `shop_number`, `name`, `price`, `count`, `total`, `pid`) VALUES
+('jindalyuvraj2@gmail.com', 1, 'Food Menu Item 1', 250, '1', '250.00', 6),
+('jindalyuvraj2@gmail.com', 1, 'Pizza', 100, '1', '100.00', 7);
 
 -- --------------------------------------------------------
 
@@ -309,7 +319,7 @@ INSERT INTO `user_info` (`user_id`, `first_name`, `last_name`, `email`, `passwor
 -- Indexes for table `cart`
 --
 ALTER TABLE `cart`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`pid`);
 
 --
 -- Indexes for table `category_list`
@@ -373,7 +383,7 @@ ALTER TABLE `user_info`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `pid` int(77) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `category_list`
