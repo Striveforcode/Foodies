@@ -8,6 +8,11 @@ body {
     box-sizing: border-box;
 }
 
+/* .button1 {
+    background-color: white; 
+    color: black;
+    border: 2px solid #4CAF50;
+} */
 .swiper {
     width: 100%;
     height: 100%;
@@ -75,11 +80,48 @@ body {
     justify-content: center;
     text-decoration: none;
   }
-  
-  .btn:hover{
-    background: white;
-    color: #000;
+  .btn1 {
+    border: none;
+    display: block;
+    padding: 10px 20px;
+    margin: 0 auto;
+    width: 160px;
+    background-color: aqua;
+    height: 36px;
+    border-radius: 30px;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-family: 'Nunito', sans-serif;
+    /* transition: all 0.1s; */
+    /* transition: height 0.1s,width 0.01s; */
+    transition: all 0.3s ease-in-out;
   }
+  
+  .btn1:hover,
+  .btn1:focus {
+    width: 300px;
+    height: 40px;
+    background-color:#ff7b25;
+    /* padding: 12px 22px; */
+  }
+  
+  .btn1:hover span,
+  .btn1:focus span {
+    display: inline;
+  }
+  
+/* .btn1:hover{
+  background: black;
+  color: white;
+} */
+.btn:hover{
+   background: white;
+   color: #000;
+}
 
 
 

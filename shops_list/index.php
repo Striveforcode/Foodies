@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 </head>
@@ -17,6 +17,8 @@
 
     <section>
         <div class="swiper swiper1">
+            <!-- <button class="btn1"><i class="fa fa-plus"></i>HOST</button> -->
+            <button type="button" class="btn1"><i class="fa fa-plus"></i>      <span>Host</span></button>
             <div class="swiper-wrapper">
             <?php 
                     include'../floating-login-signup/partials/_dbconnect.php';
