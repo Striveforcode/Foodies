@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 03, 2023 at 01:16 PM
+-- Generation Time: May 04, 2023 at 02:22 PM
 -- Server version: 10.4.27-MariaDB
--- PHP Version: 8.0.25
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,29 @@ SET time_zone = "+00:00";
 --
 -- Database: `dbms_project`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `name` varchar(15) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `password` varchar(10) NOT NULL,
+  `phone_number` text NOT NULL,
+  `address` text NOT NULL,
+  `shop_number` int(10) NOT NULL,
+  `qr_img` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`name`, `email`, `password`, `phone_number`, `address`, `shop_number`, `qr_img`) VALUES
+('yuvi', 'iit2021161@iiita.ac.in', '123456', '6280147330', 'IIITA hostel', 1, '1_qr_img.png');
 
 -- --------------------------------------------------------
 
@@ -71,7 +94,7 @@ CREATE TABLE `login-signup` (
   `is_verified` int(10) NOT NULL DEFAULT 0,
   `phone_number` text NOT NULL,
   `profile_pic` varchar(255) NOT NULL,
-  `address` text NOT NULL
+  `address` text NOT NULL DEFAULT 'IIITA HOSTEL'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -79,7 +102,8 @@ CREATE TABLE `login-signup` (
 --
 
 INSERT INTO `login-signup` (`name`, `email`, `password`, `date`, `verification_code`, `is_verified`, `phone_number`, `profile_pic`, `address`) VALUES
-('MILAN', 'jindalyuvraj2@gmail.com', '1234', '2023-04-30 01:02:57', '81ecf67f3ea0d214670b5e7a94baeb00', 1, '00009990909', 'pexels-wolfgang-2747449.jpg', 'rajkot');
+('Yuvraj jindal', 'jindalyuvraj2@gmail.com', '1234', '2023-04-30 01:02:57', '81ecf67f3ea0d214670b5e7a94baeb00', 1, '00009990909', 'pexels-wolfgang-2747449.jpg', 'rajkot'),
+('yuvi', 'iit2021161@iiita.ac.in', '123456', '2023-05-03 18:09:44', '68268b04bc64eec86253348ea23d70c6', 1, '6280147330', '', '');
 
 -- --------------------------------------------------------
 
@@ -88,11 +112,12 @@ INSERT INTO `login-signup` (`name`, `email`, `password`, `date`, `verification_c
 --
 
 CREATE TABLE `menu` (
+  `id` int(30) NOT NULL,
   `shop_number` int(10) NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `price` int(10) NOT NULL DEFAULT 0,
-  `img` varchar(255) NOT NULL,
+  `img` varchar(255) NOT NULL DEFAULT 'default.jpg',
   `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'unavailable = 0,availible = 1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -100,15 +125,16 @@ CREATE TABLE `menu` (
 -- Dumping data for table `menu`
 --
 
-INSERT INTO `menu` (`shop_number`, `name`, `description`, `price`, `img`, `status`) VALUES
-(1, 'Food Menu Item 1', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Non,quae.', 250, 'fatima-akram-uU0Anw-8Vsg-unsplash.jpg', 1),
-(1, 'Pizza', 'loemr ksdivc msdvi jskdhvi dcvhsvdics dh sjydhv cskdv cksdhvisk dkvcsi d', 100, 'fatima-akram-uU0Anw-8Vsg-unsplash.jpg', 1),
-(1, 'Burger', 'burger, is a sandwich consisting of fillings—usually a patty of ground meat, typically beef —placed inside a sliced bun or bread roll.', 70, 'burger.jpg', 1),
-(1, 'Cold Coffee', 'Frosty and satisfying Cold Coffee is a fantastic treat to enjoy on a warm day.', 120, 'cold-coffee.jpg', 1),
-(1, 'Fries', ' frites, side dish or snack typically made from deep-fried potatoes that have been cut into various shapes', 50, 'fries.jpg', 1),
-(2, 'Fries', '', 30, 'fries2.jpg', 1),
-(2, 'Chocalate Shake', '', 150, 'chocalate-shake.jpg', 1),
-(2, 'Panner', '', 90, 'paneer-tikka.jpg', 1);
+INSERT INTO `menu` (`id`, `shop_number`, `name`, `description`, `price`, `img`, `status`) VALUES
+(1, 1, 'Food Menu Item 1', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Non,quae.', 250, 'fatima-akram-uU0Anw-8Vsg-unsplash.jpg', 1),
+(2, 1, 'Pizza', 'loemr ksdivc msdvi jskdhvi dcvhsvdics dh sjydhv cskdv cksdhvisk dkvcsi d', 100, 'fatima-akram-uU0Anw-8Vsg-unsplash.jpg', 1),
+(3, 1, 'Burger', 'burger, is a sandwich consisting of fillings—usually a patty of ground meat, typically beef —placed inside a sliced bun or bread roll.', 70, 'burger.jpg', 1),
+(4, 1, 'Cold Coffee', 'Frosty and satisfying Cold Coffee is a fantastic treat to enjoy on a warm day.', 120, 'cold-coffee.jpg', 1),
+(5, 1, 'Fries', ' frites, side dish or snack typically made from deep-fried potatoes that have been cut into various shapes', 50, 'fries.jpg', 1),
+(6, 2, 'Fries', '', 30, 'fries2.jpg', 1),
+(7, 2, 'Chocalate Shake', '', 150, 'chocalate-shake.jpg', 1),
+(8, 2, 'Panner', '', 90, 'paneer-tikka.jpg', 1),
+(20, 1, 'Yuvraj jindal', 'work under progress', 50, '12345.jpeg', 1);
 
 -- --------------------------------------------------------
 
@@ -292,6 +318,12 @@ ALTER TABLE `category_list`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `menu`
+--
+ALTER TABLE `menu`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
@@ -348,6 +380,12 @@ ALTER TABLE `cart`
 --
 ALTER TABLE `category_list`
   MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `menu`
+--
+ALTER TABLE `menu`
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `orders`

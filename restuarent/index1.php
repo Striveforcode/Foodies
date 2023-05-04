@@ -165,66 +165,6 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
             </div>
             <?php endwhile; ?>
             
-            <!-- <div class="food-menu-item">
-                <div class="food-img">
-                    <img src="https://i.postimg.cc/Yq98p5Z7/food-menu4.jpg" alt="" />
-                </div>
-                <div class="food-description">
-                    <h2 class="food-titile">Food Menu Item 4</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Non,
-                        quae.
-                    </p>
-                    <p class="food-price">Price: &#8377; 250</p>
-                    
-                    <a href="#" data-name="Food_Menu_Item_4" data-price="250" class="add-to-cart btn btn-primary">Add to cart</a>
-                </div>
-            </div>
-            <div class="food-menu-item">
-                <div class="food-img">
-                    <img src="https://i.postimg.cc/KYnDqxkP/food-menu5.jpg" alt="" />
-                </div>
-                <div class="food-description">
-                    <h2 class="food-titile">Food Menu Item 5</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Non,
-                        quae.
-                    </p>
-                    <p class="food-price">Price: &#8377; 250</p>
-                    
-                    <a href="#" data-name="Food_Menu_Item_5" data-price="250" class="add-to-cart btn btn-primary">Add to cart</a>
-                </div>
-            </div>
-            <div class="food-menu-item">
-                <div class="food-img">
-                    <img src="https://i.postimg.cc/Jnxc8xQt/food-menu6.jpg" alt="" />
-                </div>
-                <div class="food-description">
-                    <h2 class="food-titile">Food Menu Item 6</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Non,
-                        quae.
-                    </p>
-                    <p class="food-price">Price: &#8377; 250</p>
-                    
-                    <a href="#" data-name="Food_Menu_Item_6" data-price="250" class="add-to-cart btn btn-primary">Add to cart</a>
-                </div>
-            </div>
-            <div class="food-menu-item">
-                <div class="food-img">
-                    <img src="https://i.postimg.cc/Jnxc8xQt/food-menu6.jpg" alt="" />
-                </div>
-                <div class="food-description">
-                    <h2 class="food-titile">Food Menu Item 7</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Non,
-                        quae.
-                    </p>
-                    <p class="food-price">Price: &#8377; 250</p>
-                    
-                    <a href="#" data-name="Food_Menu_Item_7" data-price="250" class="add-to-cart btn btn-primary">Add to cart</a>
-                </div> 
-            </div> -->
         </div>
     </section>
 

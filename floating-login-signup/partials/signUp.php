@@ -29,7 +29,7 @@ function sendMail($email, $v_code){
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = 'Email verification from our food delivery website';
-    $mail->Body    = "Thanks for registration! <b>click on link below to verify the email address</b> <a href = 'http://localhost/dbms/mini_project/floating-login-signup/partials/verify.php?email=$email&v_code=$v_code'>verify</a>";
+    $mail->Body    = "Thanks for registration! <b>click on link below to verify the email address</b> <a href = 'http://localhost/dbms/Food-delivery-software/floating-login-signup/partials/verify.php?email=$email&v_code=$v_code'>verify</a>";
    
 
     $mail->send();
@@ -60,7 +60,7 @@ function sendMail($email, $v_code){
       }
       else if($password == $cpassword){
         $v_code = bin2hex(random_bytes(16));
-          $sql = "INSERT INTO `login-signup` (`name`, `email`, `password`,`date`, `verification_code`, `is_verified`, `phone_number`) VALUES ('$username', '$email', '$password',current_timestamp(),'$v_code','0', $phone_number)";
+          $sql = "INSERT INTO `login-signup` (`name`, `email`, `password`,`date`, `verification_code`, `is_verified`, `phone_number`) VALUES ('$name', '$email', '$password',current_timestamp(),'$v_code','0', $phone_number)";
           $result = mysqli_query($conn, $sql); 
           $check = sendMail($email,$v_code);
           if ($result && $check){
