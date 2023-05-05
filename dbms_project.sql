@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2023 at 12:48 AM
+-- Generation Time: May 05, 2023 at 08:58 PM
 -- Server version: 10.4.27-MariaDB
--- PHP Version: 8.0.25
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,6 +34,7 @@ CREATE TABLE `admin` (
   `phone_number` text NOT NULL,
   `address` text NOT NULL,
   `shop_number` int(10) NOT NULL,
+  `shop_name` varchar(255) NOT NULL,
   `qr_img` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -41,8 +42,8 @@ CREATE TABLE `admin` (
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`name`, `email`, `password`, `phone_number`, `address`, `shop_number`, `qr_img`) VALUES
-('yuvi', 'iit2021161@iiita.ac.in', '123456', '6280147330', 'IIITA hostel', 1, '1_qr_img.png');
+INSERT INTO `admin` (`name`, `email`, `password`, `phone_number`, `address`, `shop_number`, `shop_name`, `qr_img`) VALUES
+('yuvi', 'iit2021161@iiita.ac.in', '123456', '6280147330', 'IIITA hostel', 1, 'CHILL OUT', '1_qr_img.png');
 
 -- --------------------------------------------------------
 
@@ -53,20 +54,9 @@ INSERT INTO `admin` (`name`, `email`, `password`, `phone_number`, `address`, `sh
 CREATE TABLE `cart` (
   `email` varchar(30) NOT NULL,
   `shop_number` int(10) NOT NULL,
-  `name` varchar(77) NOT NULL,
-  `price` int(10) NOT NULL,
-  `count` varchar(77) NOT NULL,
-  `total` varchar(77) NOT NULL,
-  `pid` int(77) NOT NULL
+  `food_id` int(10) NOT NULL,
+  `count` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `cart`
---
-
-INSERT INTO `cart` (`email`, `shop_number`, `name`, `price`, `count`, `total`, `pid`) VALUES
-('jindalyuvraj2@gmail.com', 1, 'Food Menu Item 1', 250, '1', '250.00', 6),
-('jindalyuvraj2@gmail.com', 1, 'Pizza', 100, '1', '100.00', 7);
 
 -- --------------------------------------------------------
 
@@ -143,8 +133,7 @@ INSERT INTO `menu` (`id`, `shop_number`, `name`, `description`, `price`, `img`, 
 (5, 1, 'Fries', ' frites, side dish or snack typically made from deep-fried potatoes that have been cut into various shapes', 50, 'fries.jpg', 1),
 (6, 2, 'Fries', '', 30, 'fries2.jpg', 1),
 (7, 2, 'Chocalate Shake', '', 150, 'chocalate-shake.jpg', 1),
-(8, 2, 'Panner', '', 90, 'paneer-tikka.jpg', 1),
-(20, 1, 'Yuvraj jindal', 'work under progress', 50, '12345.jpeg', 1);
+(8, 2, 'Panner', '', 90, 'paneer-tikka.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -153,21 +142,11 @@ INSERT INTO `menu` (`id`, `shop_number`, `name`, `description`, `price`, `img`, 
 --
 
 CREATE TABLE `orders` (
-  `id` int(30) NOT NULL,
-  `name` text NOT NULL,
-  `address` text NOT NULL,
-  `mobile` text NOT NULL,
-  `email` text NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT 0
+  `order_id` int(11) NOT NULL,
+  `shop_number` int(11) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `status` int(10) NOT NULL DEFAULT 0 COMMENT 'pending = 0,confrim = 1,delevired = 2;'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`id`, `name`, `address`, `mobile`, `email`, `status`) VALUES
-(1, 'James Smith', 'adasdasd asdadasd', '4756463215', 'jsmith@sample.com', 1),
-(2, 'James Smith', 'adasdasd asdadasd', '4756463215', 'jsmith@sample.com', 1);
 
 -- --------------------------------------------------------
 
@@ -178,20 +157,9 @@ INSERT INTO `orders` (`id`, `name`, `address`, `mobile`, `email`, `status`) VALU
 CREATE TABLE `order_list` (
   `id` int(30) NOT NULL,
   `order_id` int(30) NOT NULL,
-  `product_id` int(30) NOT NULL,
-  `qty` int(30) NOT NULL
+  `food_id` int(30) NOT NULL,
+  `count` int(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `order_list`
---
-
-INSERT INTO `order_list` (`id`, `order_id`, `product_id`, `qty`) VALUES
-(1, 1, 3, 1),
-(2, 1, 5, 1),
-(3, 1, 3, 1),
-(4, 1, 6, 3),
-(5, 2, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -230,6 +198,7 @@ CREATE TABLE `shop-list` (
   `shop_number` int(10) NOT NULL,
   `shop_name` varchar(255) NOT NULL,
   `shop_description` text NOT NULL,
+  `shop_address` text NOT NULL DEFAULT 'Side street IIITA Boys hostel',
   `shop_img` varchar(255) NOT NULL,
   `open_close` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -238,12 +207,12 @@ CREATE TABLE `shop-list` (
 -- Dumping data for table `shop-list`
 --
 
-INSERT INTO `shop-list` (`shop_number`, `shop_name`, `shop_description`, `shop_img`, `open_close`) VALUES
-(1, 'CHILL OUT', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit sed hic voluptatum! Cumque magni dicta nobis est recusandae quam quia? Quae quidem laborum molestiae distinctio quisquam magnam sint sapiente sequi!', 'shop2.png', '1'),
-(2, 'Shop Name', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit sed hic voluptatum! Cumque magni dicta nobis est recusandae quam quia? Quae quidem laborum molestiae distinctio quisquam magnam sint sapiente sequi!', '123771-OQ7GEF-118-removebg-preview.png', '1'),
-(3, 'Shop Name', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit sed hic voluptatum! Cumque magni dicta nobis est recusandae quam quia? Quae quidem laborum molestiae distinctio quisquam magnam sint sapiente sequi!', '3979438-removebg-preview.png', '1'),
-(4, 'Shop Name', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit sed hic voluptatum! Cumque magni dicta nobis est recusandae quam quia? Quae quidem laborum molestiae distinctio quisquam magnam sint sapiente sequi!', '8274985_3873446-removebg-preview.png', '1'),
-(5, 'Shop Name', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit sed hic voluptatum! Cumque magni dicta nobis est recusandae quam quia? Quae quidem laborum molestiae distinctio quisquam magnam sint sapiente sequi!', '3901287-removebg-preview.png', '1');
+INSERT INTO `shop-list` (`shop_number`, `shop_name`, `shop_description`, `shop_address`, `shop_img`, `open_close`) VALUES
+(1, 'CHILL OUT', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit sed hic voluptatum! Cumque magni dicta nobis est recusandae quam quia? Quae quidem laborum molestiae distinctio quisquam magnam sint sapiente sequi!', 'Side street IIITA Boys hostel', 'shop2.png', '1'),
+(2, 'Shop Name', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit sed hic voluptatum! Cumque magni dicta nobis est recusandae quam quia? Quae quidem laborum molestiae distinctio quisquam magnam sint sapiente sequi!', 'Side street IIITA Boys hostel', '123771-OQ7GEF-118-removebg-preview.png', '1'),
+(3, 'Shop Name', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit sed hic voluptatum! Cumque magni dicta nobis est recusandae quam quia? Quae quidem laborum molestiae distinctio quisquam magnam sint sapiente sequi!', 'Side street IIITA Boys hostel', '3979438-removebg-preview.png', '1'),
+(4, 'Shop Name', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit sed hic voluptatum! Cumque magni dicta nobis est recusandae quam quia? Quae quidem laborum molestiae distinctio quisquam magnam sint sapiente sequi!', 'Side street IIITA Boys hostel', '8274985_3873446-removebg-preview.png', '1'),
+(5, 'Shop Name', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit sed hic voluptatum! Cumque magni dicta nobis est recusandae quam quia? Quae quidem laborum molestiae distinctio quisquam magnam sint sapiente sequi!', 'Side street IIITA Boys hostel', '3901287-removebg-preview.png', '1');
 
 -- --------------------------------------------------------
 
@@ -316,12 +285,6 @@ INSERT INTO `user_info` (`user_id`, `first_name`, `last_name`, `email`, `passwor
 --
 
 --
--- Indexes for table `cart`
---
-ALTER TABLE `cart`
-  ADD PRIMARY KEY (`pid`);
-
---
 -- Indexes for table `category_list`
 --
 ALTER TABLE `category_list`
@@ -337,7 +300,7 @@ ALTER TABLE `menu`
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`order_id`);
 
 --
 -- Indexes for table `order_list`
@@ -380,12 +343,6 @@ ALTER TABLE `user_info`
 --
 
 --
--- AUTO_INCREMENT for table `cart`
---
-ALTER TABLE `cart`
-  MODIFY `pid` int(77) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
 -- AUTO_INCREMENT for table `category_list`
 --
 ALTER TABLE `category_list`
@@ -395,19 +352,19 @@ ALTER TABLE `category_list`
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `order_list`
 --
 ALTER TABLE `order_list`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `product_list`
