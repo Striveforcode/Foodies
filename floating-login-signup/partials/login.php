@@ -24,9 +24,11 @@
         // echo "login successfully";
           $login = true;
           session_start();
-          $_SESSION['loggedin'] = true;
-          $_SESSION['email'] = $email;
-          header("Location: ../../admin/index.php");
+          $_SESSION['shop_number'] = $result_fetch_admin['shop_number'];
+          $_SESSION['shop_name'] = $result_fetch_admin['shop_name'];
+          $_SESSION['owner_name'] = $result_fetch_admin['name'];
+          $_SESSION['login_id'] = true;
+          header("Location: ../../admin/index.php?page=home");
       } 
       else if ($num == 1 && $result_fetch['is_verified']==1){
         // echo "login successfully";

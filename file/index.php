@@ -1,16 +1,23 @@
 <?php
-include '../floating-login-signup/partials/_dbconnect.php';
-session_start();
-// $cart = $_POST['cart'];
-$email = $_SESSION['email'];
-$shop_number = $_SESSION['shop_number'];
-$qry = $conn->query("SELECT * FROM `cart` where email='$email' AND shop_number = $shop_number ");
-$qry1 = ($conn->query("SELECT * FROM `admin` where shop_number = $shop_number "))->fetch_assoc();
-$total=0;
-while($row = $qry->fetch_assoc()){
-  $total += $row['total'];
-};
-// echo $total;
+  include '../floating-login-signup/partials/_dbconnect.php';
+  session_start();
+
+  $email = $_SESSION['email'];
+  $shop_number = $_SESSION['shop_number'];
+  $qry = $conn->query("SELECT * FROM `cart` where email='$email' AND shop_number = $shop_number");
+
+  $total=0;
+  while($row = $qry->fetch_assoc()){
+    $food_id = $row['food_id'];
+    $find_price = ($conn->query("SELECT * FROM `menu` where id = $food_id"))->fetch_assoc();
+    $total += $find_price['price']*$row['count'];
+  };
+
+  if($total<=0){
+    echo '<script>alert("Enter products to your cart");setTimeout(()=>{history.go(-1);},0);</script>';
+  }
+
+  $qry1 = ($conn->query("SELECT * FROM `admin` where shop_number = $shop_number "))->fetch_assoc();
 ?>
 
 <html lang="en">
@@ -116,7 +123,8 @@ while($row = $qry->fetch_assoc()){
           </form>
         </div>
           <div class="col-12 px-md-5 px-4 mt-3">
-            <div class="btn btn-primary w-100">pay <?php echo $total; ?></div>
+          <!-- <a href = "index1.php" ><div class="btn btn-primary w-100">pay <?php echo $total; ?></div></a> -->
+          <button id="payButton" class="btn btn-primary w-100" onclick="fireSweetAlert()">pay <?php echo $total; ?></button>
           </div>
         </form>
       </div>
@@ -139,6 +147,35 @@ while($row = $qry->fetch_assoc()){
         }
       }
     </script>
+    <script>
+  function fireSweetAlert() {
+    Swal.fire({
+        title: 'good job',
+        text: 'You clicked the button',
+        icon: 'success',
+        // showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        // cancelButtonColor: '#d33',
+        confirmButtonText: 'Done' // change the button text here
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = ' ../shops_list/index.php';
+        }
+    })
+}
+  document.getElementById("payButton").addEventListener("click", function() {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "index1.php");
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        console.log(xhr.responseText);
+      }
+    };
+    xhr.send();
+});
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
     <script>src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js";
     </script>

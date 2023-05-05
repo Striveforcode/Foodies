@@ -8,6 +8,12 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
     header("Location: ../floating-login-signup");
     exit;
 }
+$shop_number = $_POST['shop_number'];
+$_SESSION['shop_number'] = $_POST['shop_number'];
+$details_result = ($conn->query("SELECT * FROM `shop-list` where shop_number = $shop_number "))->fetch_assoc();
+$shop_name = $details_result['shop_name'];
+$shop_description = $details_result['shop_description'];
+$shop_address = $details_result['shop_address'];
 ?>
 
 <html lang="en">
@@ -23,11 +29,18 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style1.css" />
     <script>
-        window.onbeforeunload = function(event) {
+    window.onbeforeunload = function(event) {
         shoppingCart.clearCart();
     };
+    
+    <?php 
+    // include '../floating-login-signup/partials/_dbconnect.php';
+    $sql = "TRUNCATE TABLE cart";
+    mysqli_query($conn, $sql);
+    // mysqli_close($conn);
+    ?>
+</script>
 
-    </script>
 </head>
 
 <body>
@@ -41,14 +54,10 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
                 <li><a href="#testimonials">Testimonial</a></li>
                 <li><a href="../profile_page_user/index.php">Profile</a></li>
                 <li><a href="../floating-login-signup/partials/logout.php">Logout</a></li>
-                <!-- <li><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cart"><i class="fa fa-shopping-basket" aria-hidden="true"></i> (<span
-              class="total-count"></span>)</button>
-            </li> -->
-              <!-- <button class="clear-cart btn btn-danger">Clear Cart</button> -->
             </ul>
             <button type="button" class="btn btn-primary" style= 'order:3' data-toggle="modal" data-target="#cart"><i class="fa fa-shopping-basket" aria-hidden="true"></i> (<span
               class="total-count"></span>)</button>
-            <h1 class="logo">Desi Restraunt</h1>
+            <h1 class="logo"><?php echo $shop_name; ?></h1>
         </div>
     </nav>
     <section class="showcase-area" id="showcase">
@@ -145,8 +154,6 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
         <h2 class="food-menu-heading">Food Menu</h2>
         <div class="food-menu-container container">
             <?php 
-                    $shop_number = $_POST['shop_number'];
-                    $_SESSION['shop_number'] = $_POST['shop_number'];
                     $qry = $conn->query("SELECT * FROM `menu` where shop_number='$shop_number'");
                     while($row = $qry->fetch_assoc()):
             ?>
@@ -165,71 +172,10 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
                 </div>
             </div>
             <?php endwhile; ?>
-            
-            <!-- <div class="food-menu-item">
-                <div class="food-img">
-                    <img src="https://i.postimg.cc/Yq98p5Z7/food-menu4.jpg" alt="" />
-                </div>
-                <div class="food-description">
-                    <h2 class="food-titile">Food Menu Item 4</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Non,
-                        quae.
-                    </p>
-                    <p class="food-price">Price: &#8377; 250</p>
-                    
-                    <a href="#" data-name="Food_Menu_Item_4" data-price="250" class="add-to-cart btn btn-primary">Add to cart</a>
-                </div>
-            </div>
-            <div class="food-menu-item">
-                <div class="food-img">
-                    <img src="https://i.postimg.cc/KYnDqxkP/food-menu5.jpg" alt="" />
-                </div>
-                <div class="food-description">
-                    <h2 class="food-titile">Food Menu Item 5</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Non,
-                        quae.
-                    </p>
-                    <p class="food-price">Price: &#8377; 250</p>
-                    
-                    <a href="#" data-name="Food_Menu_Item_5" data-price="250" class="add-to-cart btn btn-primary">Add to cart</a>
-                </div>
-            </div>
-            <div class="food-menu-item">
-                <div class="food-img">
-                    <img src="https://i.postimg.cc/Jnxc8xQt/food-menu6.jpg" alt="" />
-                </div>
-                <div class="food-description">
-                    <h2 class="food-titile">Food Menu Item 6</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Non,
-                        quae.
-                    </p>
-                    <p class="food-price">Price: &#8377; 250</p>
-                    
-                    <a href="#" data-name="Food_Menu_Item_6" data-price="250" class="add-to-cart btn btn-primary">Add to cart</a>
-                </div>
-            </div>
-            <div class="food-menu-item">
-                <div class="food-img">
-                    <img src="https://i.postimg.cc/Jnxc8xQt/food-menu6.jpg" alt="" />
-                </div>
-                <div class="food-description">
-                    <h2 class="food-titile">Food Menu Item 7</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Non,
-                        quae.
-                    </p>
-                    <p class="food-price">Price: &#8377; 250</p>
-                    
-                    <a href="#" data-name="Food_Menu_Item_7" data-price="250" class="add-to-cart btn btn-primary">Add to cart</a>
-                </div> 
-            </div> -->
         </div>
     </section>
 
-    <!-- Modal -->
+    <!--=============================================== Modal =============================================================-->
     <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -247,7 +193,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" onclick="fun()"><a href="../file/index.php">Order now</a></button>
+            <a href="../file/index.php"><button type="button" class="btn btn-primary" onclick="fun()">Order now</button></a>
           </div>
         </div>
       </div>
@@ -261,10 +207,8 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
             <div class="row">
               <div class="col-md-6">
                 <div class="foot_left">
-                  <h2>DESI RESTRAUNT</h2>
-                  <p>WINDOW KING, PROFESSIONAL WINDOW CLEANING, <br>
-                    IS A LOCAL FAMILY RUN WINDOW CLEANING SERVICE <br>
-                    THAT BEEN IN BUSINESS SINCE 1998.</p>
+                  <h2><?php echo $shop_name; ?></h2>
+                  <p><?php echo $shop_description; ?></p>
                 </div>
               </div>
               <div class="col-md-6">
@@ -272,7 +216,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
                   <h3>CONTACTS</h3>
                   <p>
                     <span>Address: </span>
-                     West Littleton Boulevard Littleton, Colorado 80187
+                    <?php echo $shop_address; ?>
                   </p>
                   <p>
                     <span>Phone: </span>
@@ -287,7 +231,7 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
           <div class="container">
             <div class="row">
               <div class="col-md-6">
-                <p> Desi Restraunt © 2023. Allright Reserved.</p>
+                <p> <?php echo $shop_name; ?> © 2023. Allright Reserved.</p>
               </div>
             </div>
           </div>
