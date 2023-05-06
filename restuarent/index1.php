@@ -52,7 +52,7 @@ $shop_address = $details_result['shop_address'];
                 <!-- <li><a href="#food">Category</a></li> -->
                 <li><a href="#food-menu">Menu</a></li>
                 <li><a href="#testimonials">Testimonial</a></li>
-                <li><a href="../profile_page_user/index.php">Profile</a></li>
+                <li><a href="../profile/index.php">Profile</a></li>
                 <li><a href="../floating-login-signup/partials/logout.php">Logout</a></li>
             </ul>
             <button type="button" class="btn btn-primary" style= 'order:3' data-toggle="modal" data-target="#cart"><i class="fa fa-shopping-basket" aria-hidden="true"></i> (<span
@@ -154,7 +154,7 @@ $shop_address = $details_result['shop_address'];
         <h2 class="food-menu-heading">Food Menu</h2>
         <div class="food-menu-container container">
             <?php 
-                    $qry = $conn->query("SELECT * FROM `menu` where shop_number='$shop_number'");
+                    $qry = $conn->query("SELECT * FROM `menu` where shop_number='$shop_number' AND status = 1");
                     while($row = $qry->fetch_assoc()):
             ?>
             <div class="food-menu-item">

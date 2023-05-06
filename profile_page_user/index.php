@@ -51,7 +51,7 @@
 </head>
 
 <body>
-<!-- <script type="text/javascript">
+    <!-- <script type="text/javascript">
     $(document).ready(function(){
 
         var upd = '<?php echo $upd; ?>';
@@ -79,13 +79,14 @@
                     </div> -->
 
                     <div class="profile-img">
-                            <img src="<?php echo 'images/'.$profile_pic; ?>" alt="" style="width: 250px; height: 250px;" id="output">
+                        <img src="<?php echo 'images/'.$profile_pic; ?>" alt="" style="width: 250px; height: 250px;"
+                            id="output">
 
-                            <div class="file btn btn-sm btn-primary mt-3">
-                                <input type="file" accept="image/*" name="image" id="file"  onchange="loadFile(event)"  >
-                                <label for="file" style="cursor: pointer;" >Upload Image</label>
-                                <!-- <button type="submit" for="file" name="upload" class="pic btn" style="cursor: pointer;" ><b>Upload Image</b></button> -->
-                            </div>
+                        <div class="file btn btn-sm btn-primary mt-3">
+                            <input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)">
+                            <label for="file" style="cursor: pointer;">Upload Image</label>
+                            <!-- <button type="submit" for="file" name="upload" class="pic btn" style="cursor: pointer;" ><b>Upload Image</b></button> -->
+                        </div>
                     </div>
                 </div>
 
@@ -168,20 +169,20 @@
                                         </div>
                                     </div> -->
                                     <div class="col-md-4" id="attr">
-                                            <!-- <label><b>Address</b></label>
+                                        <!-- <label><b>Address</b></label>
                                             <br> -->
-                                        </div>
-                                        <div class="col-md-8">
-                                            <!-- <p><?php echo $address; ?></p> -->
-                                            <h3><?php echo $address; ?></h3>
-                                            <!-- <input type="text" class="form-control" name="address" style="width:20em;"  value="<?php echo $address; ?>" required /> -->
-                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <!-- <p><?php echo $address; ?></p> -->
+                                        <h3><?php echo $address; ?></h3>
+                                        <!-- <input type="text" class="form-control" name="address" style="width:20em;"  value="<?php echo $address; ?>" required /> -->
+                                    </div>
 
                                 </div>
 
 
                                 <div class="tab-pane fade" id="order" role="tabpanel" aria-labelledby="order-tab">
-                                    <div class="row">
+                                    <!-- <div class="row">
                                         <p>
                                             <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
                                                 data-bs-target="#collapseWidthExample" aria-expanded="false"
@@ -195,7 +196,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
 
 
@@ -223,15 +224,15 @@
                         </div>
                     </div>
                     <div class="row" style="justify-content: flex-end;margin-right: 50px;">
-                        <a href="#"><button type="submit" name="upload" class="pic mt-4 ml-5 btn btn-warning"><b>Update Profile</b></button></a>
+                        <a href="#"><button type="submit" name="upload" class="pic mt-4 ml-5 btn btn-warning"><b>Update
+                                    Profile</b></button></a>
                     </div>
                 </div>
             </div>
-
     </div>
     </form>
     </div>
-<!-- 
+    <!-- 
 <script>
         $(document).ready(function(){
 	$('.pic').click(function(){
@@ -241,12 +242,13 @@
 	});
 });
 </script> -->
-    
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
-        crossorigin="anonymous"></script>
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous">
+    </script>
     <!-- <script src="script.js"></script> -->
 </body>
+
 </html>

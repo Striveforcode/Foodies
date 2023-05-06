@@ -23,7 +23,7 @@
         header('Location:index.php?upd=1');
     } 
     if(isset($_POST['save'])) { 
-        echo 'hi';
+        // echo 'hi';
         $name = $_POST['name'];
         $phone = $_POST['phone'];
         $address = $_POST['address'];

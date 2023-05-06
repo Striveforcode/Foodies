@@ -1,21 +1,21 @@
 <?php 
     include '../floating-login-signup/partials/_dbconnect.php';
     session_start();
-
     $email = $_SESSION['email'];
     $shop_number = $_SESSION['shop_number'];
-
-    // updating orders
-    $add_order = "INSERT INTO `orders` (`shop_number`, `email`, `status`) VALUES ('$shop_number', '$email',0);";
+    // $filename=$_POST['pay_img'];
+    // if(isset($_POST['upload'])){
+    $filename = $_FILES['pay_img']['name']; 
+    $tempname = $_FILES['pay_img']['tmp_name']; 
+    $folder = "images/".$filename;
+    move_uploaded_file($tempname, $folder);
+    $add_order = "INSERT INTO `orders` (`shop_number`, `email`, `pay_img`, `status`) VALUES ('$shop_number', '$email', '$filename', 0);";
     $result = mysqli_query($conn, $add_order);
-
-    // Finding the order id to assign to new order
     $id = 0;
     $qry = ($conn->query("SELECT * FROM `orders`"));
     while($row = $qry->fetch_assoc()){
         $id =  $row['order_id'];
     };
-
     // updating order list
     $card_data = ($conn->query("SELECT * FROM `cart` where email='$email' AND shop_number = $shop_number "));
     while($row = $card_data->fetch_assoc()){
