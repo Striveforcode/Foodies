@@ -122,11 +122,7 @@
                                 </div>
                                 <h4 class="text-center"><?php echo $name; ?></h4>
                             </div>
-                            <!-- <div class="img-circle text-center mb-3">
-                  <img src="/account-settings/img/user2.jpg" alt="Image" class="shadow" />
-                  <input type="file" class="btn btn-primary edit" id="profile-picture-input" accept="image/*" style="display: none;">
-                  <label for="profile-picture-input" class="btn btn-primary edit">Edit</label>
-              </div> -->
+
                             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
                                 aria-orientation="vertical">
                                 <a class="nav-link active" id="account-tab" data-toggle="pill" href="#account"
@@ -155,12 +151,7 @@
                                             <input style="border-color: #66afe9; box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);" type="text" class="form-control" name="name" value="<?php echo $name; ?>">
                                         </div>
                                     </div>
-                                    <!-- <div class="col-md-6">
-                    <div class="form-group">
-                      <label>Last Name</label>
-                      <input type="text" class="form-control" value="Acharya" readonly />
-                    </div>
-                  </div> -->
+                                    
                                     <div class="col-md-10">
                                         <div class="form-group">
                                             <label>Email</label>
