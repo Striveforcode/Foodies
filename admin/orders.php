@@ -8,7 +8,7 @@
 		position: relative;
 		overflow: hidden;
 		transition: all 0.3s ease-in-out;
-		border-radius:20px;
+		border-radius:10px;
 		width:60px;
 	}
 
@@ -82,7 +82,7 @@
 								<td class="text-center"><span class="badge badge-secondary">For Verification</span></td>
 							<?php endif; ?>
 							<td>
-								<button class="btn btn-sm btn-primary view_order" data-price="<?php echo $total_price ?>" data-id="<?php echo $row['order_id'] ?>"><img src="view.png"></button>
+								<button class="btn btn-sm btn-primary view_order" data-price="<?php echo $total_price ?>" data-id="<?php echo $row['order_id'] ?>">View</button>
 							</td>
 						</tr>
 					<?php endwhile; ?>

@@ -25,7 +25,7 @@ include('./../floating-login-signup/partials/_dbconnect.php');
 							
 							<div class="form-group">
 								<label class="control-label">Menu Name</label>
-								<input type="text" class="form-control" name="name">
+								<input type="text" class="form-control" name="name" required>
 							</div>
 							<div class="form-group">
 								<label class="control-label">Menu Description</label>
@@ -39,11 +39,11 @@ include('./../floating-login-signup/partials/_dbconnect.php');
 							</div>
 							<div class="form-group">
 								<label class="control-label">Price</label>
-								<input type="number" class="form-control text-right" name="price" step="any">
+								<input type="number" class="form-control text-right" name="price" step="any" required>
 							</div>
 							<div class="form-group">
 								<label for="" class="control-label">Image</label>
-								<input type="file" class="form-control" name="img" onchange="displayImg(this,$(this))">
+								<input type="file" class="form-control" name="img" onchange="displayImg(this,$(this))" required>
 							</div>
 							<div class="form-group">
 								<img src="<?php echo isset($image_path) ? './../photos/' . $cover_img : '' ?>" alt="" id="cimg">
@@ -197,7 +197,7 @@ include('./../floating-login-signup/partials/_dbconnect.php');
 		else
 			$('#availability').prop('checked', false)
 
-		cat.find("#cimg").attr('src', '../assets/img/' + $(this).attr('data-img_path'))
+		cat.find("#cimg").attr('src', '../photos/' + $(this).attr('data-img_path'))
 		end_load()
 	})
 

@@ -18,41 +18,38 @@
 				<tr>
 					<th class="text-center">#</th>
 					<th class="text-center">Name</th>
-					<th class="text-center">Username</th>
-					<th class="text-center">Action</th>
+					<th class="text-center">Email</th>
+					<th class="text-center">Phone Number</th>
+					<th class="text-center">Adderss</th>
 				</tr>
 			</thead>
 			<tbody>
 				<?php
- 					include 'db_connect.php';
- 					$users = $conn->query("SELECT * FROM users order by name asc");
+ 					include('./../floating-login-signup/partials/_dbconnect.php'); 
+					$shop_number = $_SESSION['shop_number'];
+ 					$users = $conn->query("SELECT * FROM orders where shop_number = '$shop_number'");
  					$i = 1;
  					while($row= $users->fetch_assoc()):
+				 ?>
+				 <?php 
+				 	$email = $row['email'];
+				 	$users_data = ($conn->query("SELECT * FROM `login-signup` where email = '$email'"))->fetch_assoc();
 				 ?>
 				 <tr>
 				 	<td>
 				 		<?php echo $i++ ?>
 				 	</td>
 				 	<td>
-				 		<?php echo $row['name'] ?>
+				 		<?php echo $users_data['name'] ?>
 				 	</td>
 				 	<td>
-				 		<?php echo $row['username'] ?>
+				 		<?php echo $users_data['email'] ?>
 				 	</td>
 				 	<td>
-				 		<center>
-								<div class="btn-group">
-								  <button type="button" class="btn btn-primary">Action</button>
-								  <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								    <span class="sr-only">Toggle Dropdown</span>
-								  </button>
-								  <div class="dropdown-menu">
-								    <a class="dropdown-item edit_user" href="javascript:void(0)" data-id = '<?php echo $row['id'] ?>'>Edit</a>
-								    <div class="dropdown-divider"></div>
-								    <a class="dropdown-item delete_user" href="javascript:void(0)" data-id = '<?php echo $row['id'] ?>'>Delete</a>
-								  </div>
-								</div>
-								</center>
+				 		<?php echo $users_data['phone_number'] ?>
+				 	</td>
+				 	<td>
+				 		<?php echo $users_data['address'] ?>
 				 	</td>
 				 </tr>
 				<?php endwhile; ?>

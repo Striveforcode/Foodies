@@ -18,10 +18,10 @@
     <section>
         <div class="swiper swiper1">
             <!-- <button class="btn1"><i class="fa fa-plus"></i>HOST</button> -->
-            <button type="button" class="btn1"><i class="fa fa-plus"></i>      <span>Host</span></button>
+            <a href = "../Shop-register/index.php" style = "text-decoration: none"><button type="button" class="btn1"><i class="fa fa-plus"></i>      <span>Host</span></button></a>
             <div class="swiper-wrapper">
             <?php 
-                    include'../floating-login-signup/partials/_dbconnect.php';
+                    include '../floating-login-signup/partials/_dbconnect.php';
                     $qry = $conn->query("SELECT * FROM `shop-list`");
                     session_start();
                     while($row = $qry->fetch_assoc()):

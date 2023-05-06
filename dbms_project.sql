@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2023 at 08:58 PM
+-- Generation Time: May 07, 2023 at 12:44 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -133,7 +133,8 @@ INSERT INTO `menu` (`id`, `shop_number`, `name`, `description`, `price`, `img`, 
 (5, 1, 'Fries', ' frites, side dish or snack typically made from deep-fried potatoes that have been cut into various shapes', 50, 'fries.jpg', 1),
 (6, 2, 'Fries', '', 30, 'fries2.jpg', 1),
 (7, 2, 'Chocalate Shake', '', 150, 'chocalate-shake.jpg', 1),
-(8, 2, 'Panner', '', 90, 'paneer-tikka.jpg', 1);
+(8, 2, 'Panner', '', 90, 'paneer-tikka.jpg', 1),
+(27, 1, 'cheese garlic bread', 'its stuffed with cheese and garlic and its taste like your ex-milk', 149, 'pexels-mariana-kurnyk-1775043.jpg', 0);
 
 -- --------------------------------------------------------
 
@@ -145,8 +146,19 @@ CREATE TABLE `orders` (
   `order_id` int(11) NOT NULL,
   `shop_number` int(11) NOT NULL,
   `email` varchar(30) NOT NULL,
+  `pay_img` varchar(255) NOT NULL,
   `status` int(10) NOT NULL DEFAULT 0 COMMENT 'pending = 0,confrim = 1,delevired = 2;'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `shop_number`, `email`, `pay_img`, `status`) VALUES
+(31, 1, 'jindalyuvraj2@gmail.com', '', 1),
+(33, 1, 'jindalyuvraj2@gmail.com', '', 1),
+(34, 1, 'jindalyuvraj2@gmail.com', '', 0),
+(35, 1, 'jindalyuvraj2@gmail.com', '', 1);
 
 -- --------------------------------------------------------
 
@@ -160,6 +172,24 @@ CREATE TABLE `order_list` (
   `food_id` int(30) NOT NULL,
   `count` int(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `order_list`
+--
+
+INSERT INTO `order_list` (`id`, `order_id`, `food_id`, `count`) VALUES
+(22, 31, 2, 1),
+(23, 31, 3, 1),
+(24, 31, 1, 1),
+(25, 32, 7, 1),
+(26, 32, 8, 1),
+(27, 32, 6, 1),
+(28, 33, 27, 1),
+(29, 33, 4, 1),
+(30, 34, 2, 1),
+(31, 34, 3, 1),
+(32, 35, 2, 1),
+(33, 35, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -352,19 +382,19 @@ ALTER TABLE `category_list`
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `order_list`
 --
 ALTER TABLE `order_list`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `product_list`

@@ -7,7 +7,7 @@ class Action
 	public function __construct()
 	{
 		ob_start();
-		include 'db_connect.php';
+		include './../floating-login-signup/partials/_dbconnect.php';
 
 		$this->db = $conn;
 	}

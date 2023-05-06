@@ -146,12 +146,22 @@ margin-right:-32px;" class="containe-fluid">
 		<div class="col-lg-12" >
 			<div class="card"  style="background-color:bisque;">
 				<div class="card-body">
-					<?php echo "Welcome back " . $_SESSION['owner_name'] . "!"  ?>
+					<?php 
+						// include './../floating-login-signup/partials/_dbconnect.php';
+						// session_start();
+						echo "Welcome back " . $_SESSION['owner_name'] . "!" ;
+						$shop_number = $_SESSION['shop_number'];
+						$home_data = $conn->query("SELECT * FROM `orders` where shop_number = '$shop_number'");
+						$total_orders = 0;
+						while($row = $home_data->fetch_assoc()){
+							$total_orders += 1;
+						}
+					?>
 				</div>
 				<div class="grid-container">
 					<div class="grid-item" style="width:280px; margin-right:10px;">
 						<h2>Total Orders</h2>
-						<h3>270</h3>
+						<h3><?php echo $total_orders; ?></h3>
 						<img class="imgicon" src="2.png">
 					</div>
 					<div class="grid-item" style="width:280px;  margin-left:10px; margin-right:10px">

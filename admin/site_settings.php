@@ -1,5 +1,5 @@
 <?php
-include 'db_connect.php';
+include('./../floating-login-signup/partials/_dbconnect.php'); 
 $qry = $conn->query("SELECT * from system_settings limit 1");
 if($qry->num_rows > 0){
 	foreach($qry->fetch_array() as $k => $val){
