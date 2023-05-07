@@ -124,11 +124,7 @@
                                 </div>
                                 <h4 class="text-center"><?php echo $name; ?></h4>
                             </div>
-                            <!-- <div class="img-circle text-center mb-3">
-                  <img src="/account-settings/img/user2.jpg" alt="Image" class="shadow" />
-                  <input type="file" class="btn btn-primary edit" id="profile-picture-input" accept="image/*" style="display: none;">
-                  <label for="profile-picture-input" class="btn btn-primary edit">Edit</label>
-              </div> -->
+                            
                             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
                                 aria-orientation="vertical">
                                 <a class="nav-link active" id="account-tab" data-toggle="pill" href="#account"
@@ -156,12 +152,7 @@
                                             <input type="text" class="form-control" value="<?php echo $name; ?>" readonly />
                                         </div>
                                     </div>
-                                    <!-- <div class="col-md-6">
-                    <div class="form-group">
-                      <label>Last Name</label>
-                      <input type="text" class="form-control" value="Acharya" readonly />
-                    </div>
-                  </div> -->
+                                   
                                     <div class="col-md-10">
                                         <div class="form-group">
                                             <label>Email</label>
@@ -222,29 +213,7 @@
                     </div>
                 </div>
             </form>
-            <!-- <script>
-            $(document).ready(function() {
-                $("#account-settings-form").submit(function(event) {
-                    event.preventDefault(); // prevent the form from submitting normally
 
-                    // send an AJAX request to profile_pic.php
-                    $.ajax({
-                        url: "profile_pic.php",
-                        type: "POST",
-                        data: new FormData(this),
-                        processData: false,
-                        contentType: false,
-                        success: function(response) {
-                            // handle the response from the server
-                            // e.g. update the UI, show a success message, etc.
-                        },
-                        error: function(jqXHR, textStatus, errorThrown) {
-                            // handle the error
-                        }
-                    });
-                });
-            });
-            </script> -->
 
         </section>
         <script>
@@ -350,48 +319,60 @@
             <h1>My Orders</h1>
         </header>
         <main>
+            <?php
+                // $email=$_SESSION['email'];
+                $cats = $conn->query("SELECT * FROM `orders` where email = '$email'");
+                while ($row = $cats->fetch_assoc()){
+                    $order_id = $row['order_id'];
+            ?>
             <table id="table" class="table table-bordered table-hover">
                 <thead style="background: #404040; color: white">
                     <tr>
-                        <th>Order Number</th>
+                        <th>Number</th>
                         <th>Items</th>
                         <th>Quantity</th>
-                        <th>Total Price</th>
-                        <th>Status</th>
+                        <th>Price</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <?php 
+                        $food_data = $conn->query("SELECT * FROM `order_list` where order_id = '$order_id'");
+                        $i = 1;
+                        $total = 0;
+                        $status = $row['status'];
+                        while($it = $food_data->fetch_assoc()){
+                            $food_id = $it['food_id'];
+                            $food_count = $it['count'];
+                            $food_price = ($conn->query("SELECT * FROM `menu` where id = '$food_id'"))->fetch_assoc();
+                            $price = $food_price['price'];
+                            $food_name = $food_price['name'];
+                            $total += $food_count*$price;
+                    ?>
                     <tr>
-                        <td>1</td>
-                        <td>Chicken Tikka Masala, Naan, Rice</td>
-                        <td>1, 2, 1</td>
-                        <td>$23.50</td>
-                        <td><button class="btn btn-primary">Delivered</button></td>
+                        <td><?php echo $i++ ?></td>
+                        <td><?php echo $food_name ?></td>
+                        <td><?php echo $food_count ?></td>
+                        <td><?php echo $price ?></td>
+                    </tr>
+                    <?php }; ?>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="2" class="text-right">TOTAL</th>
+                        <th colspan="2" ><?php echo number_format($total,2) ?></th>
                     </tr>
                     <tr>
-                        <td>1</td>
-                        <td>Chicken Tikka Masala, Naan, Rice</td>
-                        <td>1, 2, 1</td>
-                        <td>$23.50</td>
-                        <td><button class="btn btn-primary">On the Way</button></td>
+                        <th colspan="2" class="text-right">STATUS</th>
+                        <?php if($status==0) : ?>
+                            <th colspan="2" ><button type="button" class="btn btn-secondary">Pending</button></th>
+                        <?php elseif($status==1) : ?>
+							<th colspan="2" ><button type="button" class="btn btn-success">Confermed</button></th>
+						<?php endif; ?>
                     </tr>
 
-                    <tr>
-                        <td>2</td>
-                        <td>Pepperoni Pizza, Garlic Bread</td>
-                        <td>1, 1</td>
-                        <td>$15.00</td>
-                        <td><button class="btn btn-primary">Cancelled</button></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Pad Thai, Spring Rolls</td>
-                        <td>1, 2</td>
-                        <td>$18.50</td>
-                        <td><button class="btn btn-primary">Verification</button></td>
-                    </tr>
-                </tbody>
+                </tfoot>
             </table>
+            <?php }; ?>
         </main>
         <script src="script.js"></script>
 

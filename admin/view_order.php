@@ -24,7 +24,7 @@
 				<td><?php echo $menu_data['name'] ?></td>
 				<td><?php echo number_format($row['count'] * $menu_data['price'],2) ?></td>
 			</tr>
-		<?php endwhile; ?>
+			<?php endwhile; ?>
 		</tbody>
 		<tfoot>
 			<tr>
