@@ -5,9 +5,9 @@ use PHPMailer\PHPMailer\Exception;
 
 function sendMail($email, $v_code){
   
-  include 'C:/xampp/htdocs/dbms/Food-delivery-software/phpmailer1/Exception.php';
-  include 'C:/xampp/htdocs/dbms/Food-delivery-software/phpmailer1/PHPMailer.php';
-  include 'C:/xampp/htdocs/dbms/Food-delivery-software/phpmailer1/SMTP.php';
+  include '../../phpmailer1/Exception.php';
+  include '../../phpmailer1/PHPMailer.php';
+  include '../../phpmailer1/SMTP.php';
 
   $mail = new PHPMailer(true);
 
@@ -43,7 +43,7 @@ function sendMail($email, $v_code){
 
 
   if($_SERVER["REQUEST_METHOD"] == "POST"){
-    include "C:/xampp/htdocs/dbms/Food-delivery-software/floating-login-signup/partials/_dbconnect.php";
+    include "_dbconnect.php";
       $name = $_POST["name"];
       $email = $_POST["email"];
       $phone_number = $_POST["phone"];
