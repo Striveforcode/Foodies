@@ -41,7 +41,7 @@
 						<th>Name</th>
 						<th>Phone number</th>
 						<th>Address</th>
-						<th>Total price</th>
+						<th>Payment Screenshot</th>
 						<th>Status</th>
 						<th></th>
 					</tr>
@@ -75,7 +75,7 @@
 							<td><?php echo $user_data['name'] ?></td>
 							<td><?php echo $user_data['phone_number'] ?></td>
 							<td><?php echo $user_data['address'] ?></td>
-							<td><?php echo $total_price ?></td>
+							<td><a href = "../file/images/<?php echo $row['pay_img'] ?>" target = "yuvraj">View</a></td>
 							<?php if ($row['status'] == 1) : ?>
 								<td class="text-center"><span class="badge badge-success">Confirmed</span></td>
 							<?php else : ?>
