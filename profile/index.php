@@ -190,7 +190,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <!-- <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>New password</label>
@@ -203,7 +203,7 @@
                                             <input type="password" class="form-control" readonly />
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div>
                                     <a href="#"><button type="submit" class="btn btn-primary edit"
                                             name="upload">Update</button></a>

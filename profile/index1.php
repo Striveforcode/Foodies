@@ -185,7 +185,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Old password</label>
-                                            <input type="password" class="form-control" readonly />
+                                            <input type="password" class="form-control" name="old_password"  />
                                         </div>
                                     </div>
                                 </div>
@@ -193,18 +193,18 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>New password</label>
-                                            <input type="password" class="form-control" readonly />
+                                            <input type="password" class="form-control" name="new_password" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Confirm new password</label>
-                                            <input type="password" class="form-control" readonly />
+                                            <input type="password" class="form-control"  name="confirm_password"  />
                                         </div>
                                     </div>
                                 </div>
                                 <div>
-                                    <button class="btn btn-primary edit" name="save">save</button>
+                                    <button class="btn btn-primary edit" name="update">save</button>
                                 </div>
                             </div>
                         </div>
