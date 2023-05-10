@@ -58,6 +58,7 @@
 					<?php 
 						// user data fetching
 						$email = $row['email'];
+						$pay_img = $row['pay_img'];
 						$user_data = ($conn->query("SELECT * FROM `login-signup` where email = '$email'"))->fetch_assoc();
 
 						// order list data fetching
@@ -75,7 +76,9 @@
 							<td><?php echo $user_data['name'] ?></td>
 							<td><?php echo $user_data['phone_number'] ?></td>
 							<td><?php echo $user_data['address'] ?></td>
-							<td><a href = "../file/images/<?php echo $row['pay_img'] ?>" target = "yuvraj">View</a></td>
+							<td>
+							<button class="btn btn-info view_payment" data-id="<?php echo $row['order_id']?>" data-pic="<?php echo $pay_img ?>" >View</button>
+							</td>
 							<?php if ($row['status'] == 1) : ?>
 								<td class="text-center"><span class="badge badge-success">Confirmed</span></td>
 							<?php else : ?>
@@ -95,5 +98,21 @@
 <script>
 	$('.view_order').click(function() {
 		uni_modal('Order', 'view_order.php?id=' + $(this).attr('data-id')+'&total_price=' + $(this).attr('data-price'))
-	})
+	});
+
+	$('.view_payment').click(function() {
+		uni_modal('Payment Screeshot', 'view_payment.php?id=' + $(this).attr('data-id')+'&pic=' + $(this).attr('data-pic'))
+	});
+
+	const myButton = document.getElementById('myButton');
+	myButton.addEventListener('click', () => {
+	const myPopup = document.getElementById('myPopup');
+	myPopup.style.display = 'block';
+	});
+
+	const closeButton = document.getElementById('closeButton');
+	closeButton.addEventListener('click', () => {
+	const myPopup = document.getElementById('myPopup');
+	myPopup.style.display='none';
+	});
 </script>

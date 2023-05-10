@@ -2,6 +2,7 @@
     include "../floating-login-signup/partials/_dbconnect.php";
     session_start();
     $email=$_SESSION['email'];
+    $shop_number = $_SESSION['shop_number'];
 
     if(!empty($_GET)){
         $upd = $_GET['upd'];
@@ -87,7 +88,11 @@
 
         <li class="profile">
             <div class="profile-details">
-                <i class="bx bx-log-out" id="log_out"></i>
+                <form method="post" action = "../../restuarent/index1.php">
+                    <input type="hidden" name="shop_number" value="<?php echo $shop_number ?>" >
+                    <button type = "submit" name = "order" class="btn"><i class="bx bx-log-out" id="log_out"></i></button>
+                </form>
+                <!-- <a href = "../restuarent/index1.php"><i class="bx bx-log-out" id="log_out"></i></a> -->
             </div>
         </li>
     </div>
@@ -190,20 +195,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>New password</label>
-                                            <input type="password" class="form-control" readonly />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Confirm new password</label>
-                                            <input type="password" class="form-control" readonly />
-                                        </div>
-                                    </div>
-                                </div> -->
                                 <div>
                                     <a href="#"><button type="submit" class="btn btn-primary edit"
                                             name="upload">Update</button></a>

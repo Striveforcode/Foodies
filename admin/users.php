@@ -26,15 +26,15 @@
 			<tbody>
 				<?php
  					include('./../floating-login-signup/partials/_dbconnect.php'); 
+				?>
+				<?php 
+					$i = 1;
 					$shop_number = $_SESSION['shop_number'];
- 					$users = $conn->query("SELECT * FROM orders where shop_number = '$shop_number'");
- 					$i = 1;
- 					while($row= $users->fetch_assoc()):
-				 ?>
-				 <?php 
-				 	$email = $row['email'];
-				 	$users_data = ($conn->query("SELECT * FROM `login-signup` where email = '$email'"))->fetch_assoc();
-				 ?>
+					$users_infos = ($conn->query("SELECT * FROM `user_info` where shop_number = '$shop_number'"));
+					while($row= $users_infos->fetch_assoc()):
+						$email1 = $row['email'];
+				 		$users_data = ($conn->query("SELECT * FROM `login-signup` where email = '$email1'"))->fetch_assoc();
+				?>
 				 <tr>
 				 	<td>
 				 		<?php echo $i++ ?>

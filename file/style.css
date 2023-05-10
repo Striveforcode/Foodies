@@ -5,11 +5,13 @@
     padding: 0;
     box-sizing: border-box;
     list-style: none;
-    font-family: 'Montserrat', sans-serif
+    font-family: 'Montserrat', sans-serif;
 }
 
 body{
-   background-color:#05cf48;
+   /* background-color:#05cf48; */
+   background-color:#7579ff;
+   overflow: hidden;
 }
 
 .container {
@@ -21,7 +23,7 @@ body{
 .card.box1 {
     width: 350px;
     height: 500px;
-    background-color: #3ecc6d;
+    background-color: #7579ff;
     color: #baf0c3;
     border-radius: 0
 }
@@ -41,15 +43,16 @@ body{
     width: 20px;
     background-color: transparent;
     border: none;
-    color: #3ecc6d
+    color:#7579ff;
 }
 
 .box2 .btn.btn-primary.bar:hover {
-    color: #baf0c3
+    /* color: #baf0c3 */
+    color: #7579ff;
 }
 
 .box1 .btn.btn-primary {
-    background-color: #57c97d;
+    background-color:#7579ff;
     width: 45px;
     height: 45px;
     display: flex;
@@ -60,7 +63,8 @@ body{
 
 .box1 .btn.btn-primary:hover {
     background-color: #f6f8f7;
-    color: #57c97d
+    /* color: #57c97d; */
+    color: #7579ff;
 }
 
 .btn.btn-success {
@@ -123,7 +127,8 @@ img {
     position: absolute;
     right: 0px;
     bottom: 9px;
-    color: #57c97d;
+  
+    color: #7579ff;
     cursor: pointer;
     transition: 0.3s;
     font-size: 14px
@@ -141,7 +146,7 @@ img {
 }
 
 .btn-outline-primary:hover {
-    background-color: #05cf48;
+    background-color: #7579ff;
     border: 1px solid #ddd
 }
 
@@ -151,7 +156,7 @@ img {
 .btn-outline-primary.dropdown-toggle.show,
 .btn-outline-primary:active {
     color: #baf0c3;
-    background-color: #3ecc6d;
+    background-color: #7579ff;
     box-shadow: none;
     border: 1px solid #ddd
 }
@@ -176,7 +181,7 @@ form .btn.btn-primary {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #3ecc6d;
+    background-color: #7579ff;
     border: 1px solid #ddd
 }
 

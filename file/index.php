@@ -13,6 +13,13 @@
     $total += $find_price['price']*$row['count'];
   };
 
+    $users_info = ($conn->query("SELECT * FROM `user_info` where email = '$email' AND shop_number = '$shop_number'"));
+	$count = mysqli_num_rows($users_info);
+	if($count==0){
+		$sql = "INSERT INTO `user_info`(`email`, `shop_number`) VALUES ('$email','$shop_number')";
+        $result = mysqli_query($conn, $sql); 
+	}
+
   if($total<=0){
     echo '<script>alert("Enter products to your cart");setTimeout(()=>{history.go(-1);},0);</script>';
   }
@@ -60,12 +67,9 @@
                     <span class="ps-3"><?php echo $qry1['name']; ?></span>
                 </div>
                 <div class="d-flex align-items-center justify-content-between text mt-5">
-                    <div class="d-flex flex-column text">
-                        <span>Customer Support:</span> <span>7985667854</span>
+                    <div class="d-flex flex-column text"> <span>Customer Support:</span> <span><?php echo $qry1['phone_number']; ?></span>
                     </div>
-                    <div class="btn btn-primary rounded-circle">
-                        <span class="fas fa-comment-alt"></span>
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -79,7 +83,7 @@
             <ul class="nav nav-tabs mb-3 px-md-4 px-2">
 
                 <li class="nav-item">
-                    <a style="font-weight:bold; font-size:20px;" class="nav-link px-2" href="#">QR Payment</a>
+                <div style="font-weight:bold; font-size:20px;" class="px-2">QR Payment</div>
                 </li>
 
 
@@ -91,7 +95,7 @@
             </div>
             <form method="post" enctype="multipart/form-data">
                 <div>
-                    <img class="qr" src="qr.jpeg" />
+                    <img class="qr" src="../shop-register/images/<?php echo $qry1['qr_img']; ?>" />
                 </div>
                 <div class="transa">
                     <p>ScreenShot Of Transaction:</p>
