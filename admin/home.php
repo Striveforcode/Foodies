@@ -152,6 +152,12 @@ margin-right:-32px;" class="containe-fluid">
 						echo "Welcome back " . $_SESSION['owner_name'] . "!" ;
 						$shop_number = $_SESSION['shop_number'];
 						$home_data = $conn->query("SELECT * FROM `orders` where shop_number = '$shop_number'");
+						$customer_data = $conn->query("SELECT * FROM `user_info` where shop_number = '$shop_number'");
+						$menu_data = $conn->query("SELECT * FROM `menu` where shop_number = '$shop_number'");
+						$orders_data = $conn->query("SELECT * FROM `orders` where shop_number = '$shop_number' AND status = 0");
+						$total_users = mysqli_num_rows($customer_data);
+						$total_menu_items = mysqli_num_rows($menu_data);
+						$pending_orders = mysqli_num_rows($orders_data);
 						$total_orders = 0;
 						while($row = $home_data->fetch_assoc()){
 							$total_orders += 1;
@@ -166,17 +172,17 @@ margin-right:-32px;" class="containe-fluid">
 					</div>
 					<div class="grid-item" style="width:280px;  margin-left:10px; margin-right:10px">
 						<h2>Total Customer</h2>
-						<h3>270</h3>
+						<h3><?php echo $total_users; ?></h3>
 						<img class="imgicon" src="2.png">
 					</div>
 					<div class="grid-item" style="width:280px;margin-left:10px ;margin-right:10px">
-						<h2>Total Vendors</h2>
-						<h3>270</h3>
+						<h2>Total Menu Items</h2>
+						<h3><?php echo $total_menu_items; ?></h3>
 						<img class="imgicon" src="2.png">
 					</div>
 					<div class="grid-item" style="width:280px;margin-right:10px;margin-left:10px">
-						<h2>Total Turnover</h2>
-						<h3>270</h3>
+						<h2>Pending orders</h2>
+						<h3><?php echo $pending_orders; ?></h3>
 						<img class="imgicon" src="2.png">
 					</div>
 				</div>

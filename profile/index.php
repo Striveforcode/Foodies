@@ -19,7 +19,7 @@
     $phone_number = $result_fetch['phone_number'];
     $address = $result_fetch['address'];
     if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
-        header("Location: ../floating-login-signup/index.php");
+        header("Location: ../index.php");
         exit;
     }
     
@@ -88,7 +88,7 @@
 
         <li class="profile">
             <div class="profile-details">
-                <form method="post" action = "../../restuarent/index1.php">
+                <form method="post" action = "../restuarent/index1.php">
                     <input type="hidden" name="shop_number" value="<?php echo $shop_number ?>" >
                     <button type = "submit" name = "order" class="btn"><i class="bx bx-log-out" id="log_out"></i></button>
                 </form>

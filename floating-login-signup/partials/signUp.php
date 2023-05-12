@@ -17,12 +17,12 @@ function sendMail($email, $v_code){
     $mail->isSMTP();                                            //Send using SMTP
     $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   =  true;                                   //Enable SMTP authentication
-    $mail->Username   = 'jindalyuvraj2@gmail.com';                     //SMTP username
-    $mail->Password   = 'ausohyhecurtqqyo';                               //SMTP password
+    $mail->Username   = 'jainyuvi431@gmail.com';                     //SMTP username
+    $mail->Password   = 'pcpspppwdzdirgxv';                               //SMTP password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
     $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
-    $mail->setFrom('jindalyuvraj2@gmail.com', 'food delivery website');
+    $mail->setFrom('jainyuvi431@gmail.com', 'food delivery website');
     $mail->addAddress($email);  
 
 
@@ -33,11 +33,11 @@ function sendMail($email, $v_code){
    
 
     $mail->send();
+    echo 'Message has been sent';
     return true;
-    // echo 'Message has been sent';
   } catch (Exception $e) {
     return false;
-      // echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
   }
 }
 
@@ -56,7 +56,7 @@ function sendMail($email, $v_code){
       $num = mysqli_num_rows($result);
 
       if ($num == 1){
-        echo '<script>alert("Use another email");setTimeout(()=>{window.location.replace("../index.php");},500);</script>';
+        echo '<script>alert("Use another email");setTimeout(()=>{window.location.replace("../../index.php");},500);</script>';
       }
       else if($password == $cpassword){
         $v_code = bin2hex(random_bytes(16));
@@ -64,14 +64,14 @@ function sendMail($email, $v_code){
           $result = mysqli_query($conn, $sql); 
           $check = sendMail($email,$v_code);
           if ($result && $check){
-              echo '<script>alert("Sign up succesfully ");setTimeout(()=>{window.location.replace("../index.php");},500);</script>';
+              echo '<script>alert("Sign up succesfully ");setTimeout(()=>{window.location.replace("../../index.php");},500);</script>';
           } else {
-            echo '<script>alert("Server down");setTimeout(()=>{window.location.replace("../index.php");},500);</script>';
+            echo '<script>alert("Server down");setTimeout(()=>{window.location.replace("../../index.php");},500);</script>';
           }
       }
       else{
           // $showError = "Passwords do not match";
-          echo '<script>alert("Passwords do not match");setTimeout(()=>{window.location.replace("../index.php");},500);</script>';
+          echo '<script>alert("Passwords do not match");setTimeout(()=>{window.location.replace("../../index.php");},500);</script>';
       }
   }
 

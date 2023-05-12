@@ -5,7 +5,7 @@ session_cache_limiter('private_no_expire');
 session_start();
 
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
-    header("Location: ../floating-login-signup");
+    header("Location: ../");
     exit;
 }
 $shop_number = $_POST['shop_number'];
@@ -55,7 +55,7 @@ $shop_address = $details_result['shop_address'];
                 <!-- <li><a href="#food">Category</a></li> -->
                 <li><a href="#food-menu">Menu</a></li>
                 <li><a href="#testimonials">Reviews</a></li>
-                <li><a href="../profile//index.php">Profile</a></li>
+                <li><a href="../profile/index.php">Profile</a></li>
                 <li><a href="../floating-login-signup/partials/logout.php">Logout</a></li>
             </ul>
             <button type="button" class="btn btn-primary" style='order:3' data-toggle="modal" data-target="#cart"><i class="fa fa-shopping-basket" aria-hidden="true"></i> (<span class="total-count"></span>)</button>

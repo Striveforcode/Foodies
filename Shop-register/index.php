@@ -30,7 +30,7 @@ if (isset($_POST['shop_name'])) {
   $password = $sql1['password'];
   $phone_number = $sql1['phone_number'];
   
-  $sql3 = "INSERT INTO `admin` (`name`, `email`, `password`, `phone_number`, `address`, `shop_number`, `shop_name`, `qr_img`) VALUES ('$name','$email', '$password','$phone_number','$shop_address','$numRows', '$target_file_qr', '1');";
+  $sql3 = "INSERT INTO `admin` (`name`, `email`, `password`, `phone_number`, `address`, `shop_number`, `shop_name`, `qr_img`) VALUES ('$name','$email', '$password','$phone_number','$shop_address','$numRows', '$shop_name','$target_file_qr');";
   $result = mysqli_query($conn, $sql3);
   header('Location: ../shops_list/index.php');
 }

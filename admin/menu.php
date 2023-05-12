@@ -43,7 +43,7 @@ include('./../floating-login-signup/partials/_dbconnect.php');
 							</div>
 							<div class="form-group">
 								<label for="" class="control-label">Image</label>
-								<input type="file" class="form-control" name="img" onchange="displayImg(this,$(this))" required>
+								<input type="file" class="form-control" name="img" onchange="displayImg(this,$(this))">
 							</div>
 							<div class="form-group">
 								<img src="<?php echo isset($image_path) ? './../photos/' . $cover_img : '' ?>" alt="" id="cimg">
@@ -93,7 +93,7 @@ include('./../floating-login-signup/partials/_dbconnect.php');
 										<td class="">
 											<p>Name : <b><?php echo $row['name'] ?></b></p>
 											<p>Description : <b class="truncate"><?php echo $row['description'] ?></b></p>
-											<p>Price : <b><?php echo "$" . number_format($row['price'], 2) ?></b></p>
+											<p>Price : <b>&#8377;<?php echo number_format($row['price'], 2) ?></b></p>
 										</td>
 										<td class="text-center">
 											<button style="margin-bottom:2px; width:60px; border-radius:10px;" class="btn btn-sm btn-primary edit_menu" type="button" data-id="<?php echo $row['id'] ?>" data-name="<?php echo $row['name'] ?>" data-status="<?php echo $row['status'] ?>" data-description="<?php echo $row['description'] ?>" data-price="<?php echo $row['price'] ?>" data-img_path="<?php echo $row['img'] ?>">Edit</button>

@@ -145,9 +145,9 @@
 							<h5 class="m-b-0">admin</h5>
 						</div>
 					</div>
-					<a class="dropdown-item" href="http://stage.foodpurby.in/admin/admin-user/profile-view"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
+					<!-- <a class="dropdown-item" href="http://stage.foodpurby.in/admin/admin-user/profile-view"><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
 					<a class="dropdown-item" href="http://stage.foodpurby.in/admin/change-password"><i class="fa fa-key m-r-5 m-l-5"></i>Change Password</a>
-					<a class="dropdown-item" href="http://stage.foodpurby.in/admin/admin-user/profile-update"><i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
+					<a class="dropdown-item" href="http://stage.foodpurby.in/admin/admin-user/profile-update"><i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a> -->
 					<a class="dropdown-item" href="../floating-login-signup/partials/logout.php"><i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
 				</div>
 			</div>
@@ -162,11 +162,8 @@
 		<a href="index.php?page=home" class="nav-item nav-home"><span class='icon-field'><i class="fa fa-home"></i></span> Home</a>
 		<a href="index.php?page=orders" class="nav-item nav-orders"><span class='icon-field'><i class="fa fa-list"></i></span>Orders</a>
 		<a href="index.php?page=menu" class="nav-item nav-menu"><span class='icon-field'><i class="fa fa-list"></i></span>Menu</a>
-		<!-- <a href="index.php?page=categories" class="nav-item nav-categories"><span class='icon-field'><i class="fa fa-list"></i></span>Category List</a> -->
-		<!-- <?php if ($_SESSION['login_id'] == 1) : ?> -->
 		<a href="index.php?page=users" class="nav-item nav-users"><span class='icon-field'><i class="fa fa-users"></i></span> Users</a>
-		<a href="index.php?page=site_settings" class="nav-item nav-site_settings"><span class='icon-field'><i class="fa fa-cogs"></i></span> Site Settings</a>
-		<!-- <?php endif; ?> -->
+		
 	</div>
 
 </nav>

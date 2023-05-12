@@ -1,5 +1,5 @@
 <?php
-    include "C:/xampp/htdocs/dbms/Food-delivery-software/floating-login-signup/partials/_dbconnect.php";
+    include "_dbconnect.php";
 
     if(isset($_GET['email']) && isset($_GET['v_code'])){
         $email = $_GET['email'];
@@ -13,16 +13,16 @@
                     $fetch_email = $result_fetch['email'];
                     $update = "UPDATE `login-signup` SET is_verified = '1' WHERE email = '$fetch_email'";
                     if(mysqli_query($conn,$update)){
-                        echo '<script>alert("email verification successful");setTimeout(()=>{window.location.replace("../index.php");},500);</script>';
+                        echo '<script>alert("email verification successful");setTimeout(()=>{window.location.replace("../../index.php");},500);</script>';
                     } else {
-                        echo '<script>alert("Cannot run query");setTimeout(()=>{window.location.replace("../index.php");},500);</script>';
+                        echo '<script>alert("Cannot run query");setTimeout(()=>{window.location.replace("../../index.php");},500);</script>';
                     }
                 } else {
-                    echo '<script>alert("Email is already verified");setTimeout(()=>{window.location.replace("../index.php");},500);</script>';
+                    echo '<script>alert("Email is already verified");setTimeout(()=>{window.location.replace("../../index.php");},500);</script>';
                 }
             }
         } else {
-            echo '<script>alert("Cannot run query");setTimeout(()=>{window.location.replace("../index.php");},500);</script>';
+            echo '<script>alert("Cannot run query");setTimeout(()=>{window.location.replace("../../index.php");},500);</script>';
         }
     }
 ?>

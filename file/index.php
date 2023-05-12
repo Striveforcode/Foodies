@@ -113,7 +113,7 @@
             <script>
             function fireSweetAlert() {
                 Swal.fire({
-                    title: 'Good job',
+                    title: 'Order Placed',
                     text: 'You clicked the button',
                     icon: 'success',
                     confirmButtonColor: '#3085d6',

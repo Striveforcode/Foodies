@@ -18,7 +18,7 @@
       $result_fetch = mysqli_fetch_assoc($result);
 
       if($result_fetch['is_verified']==0){
-        echo '<script>alert("Email is not verified");setTimeout(()=>{window.location.replace("../index.php");},500);</script>';
+        echo '<script>alert("Email or password not verified");setTimeout(()=>{window.location.replace("../../index.php");},500);</script>';
       }
       else if ($num_admin == 1 && $result_fetch['is_verified']==1){
         // echo "login successfully";
@@ -39,7 +39,7 @@
           header("Location: ../../shops_list/index.php");
       } 
       else{
-          echo '<script>alert(" Enter correct email or password ");setTimeout(()=>{window.location.replace("../index.php");},500);</script>';
+          echo '<script>alert(" Enter correct email or password ");setTimeout(()=>{window.location.replace("../../index.php");},500);</script>';
       }
     }
 
