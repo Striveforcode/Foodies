@@ -1,9 +1,9 @@
 <?php
 
   $server = "localhost";
-  $username = "root";
-  $password = "";
-  $database = "dbms_project";
+  $username = "dbms04";
+  $password = "dbms@04";
+  $database = "dbms04";
 
   $conn = mysqli_connect($server, $username, $password, $database);
   // if ($conn){

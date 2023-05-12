@@ -29,7 +29,7 @@ function sendMail($email, $v_code){
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = 'Email verification from our food delivery website';
-    $mail->Body    = "Thanks for registration! <b>click on link below to verify the email address</b> <a href = 'http://localhost/dbms/Food-delivery-software/floating-login-signup/partials/verify.php?email=$email&v_code=$v_code'>verify</a>";
+    $mail->Body    = "Thanks for registration! <b>click on link below to verify the email address</b> <a href = '172.16.15.7/dbms04/floating-login-signup/partials/verify.php?email=$email&v_code=$v_code'>verify</a>";
    
 
     $mail->send();
