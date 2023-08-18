@@ -1,7 +1,5 @@
 # Food-delivery-software
-
-# Food Delivery Website
-
+# Food-delivery Website
 Welcome to the Food Delivery Website! This project is a web application that allows users to browse a menu, place orders, and have food delivered to their location. The website is built using PHP, MySQL, HTML, CSS, and JavaScript.
 
 ## Table of Contents
