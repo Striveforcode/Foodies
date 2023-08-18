@@ -21,7 +21,7 @@ Welcome to the Food Delivery Website! This project is a web application that all
 - Admin can change the menu
 - Admin can accept or reject the order
 - Admin can see the number of orders placed
-- Admin can see number of unique customers
+- Admin can see the number of unique customers
 
 ## Technologies Used
 
@@ -33,15 +33,15 @@ Welcome to the Food Delivery Website! This project is a web application that all
 
 ## Getting Started
 
-1. Clone the repository: `git clone https://github.com/your-username/food-delivery-website.git`
+1. Clone the repository: `git clone https://github.com/yuvraj-jindal/Food-delivery-software.git`
 2. Navigate to the project directory: `cd food-delivery-website`
 
 ## Database Setup
 
 1. Create a MySQL database for the project.
-2. Import the `database.sql` file provided in the `database` directory to set up the necessary tables.
+2. Import the `dbms_project.sql` file provided in the `database` directory to set up the necessary tables.
 
 ## Usage
 
-1. Configure the database connection by editing the `config.php` file in the `includes` directory.
+1. Configure the database connection by editing the `_dbconnect.php` file in the `floating-login-signup/partials/` directory.
 2. Start a local development server (e.g., using PHP's built-in server).
